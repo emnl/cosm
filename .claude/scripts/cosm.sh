@@ -43,11 +43,51 @@ open_page() { local f; f=$(osascript -l JavaScript .claude/scripts/open-page.js 
 version() { cat VERSION 2>/dev/null || echo unknown; }
 source_url() { grep -m1 '^# source:' MANIFEST 2>/dev/null | sed 's/^# source: *//'; }
 
+# --- /update -------------------------------------------------------------------
+manifest_paths() { grep -v -e '^#' -e '^[[:space:]]*$' "$1" 2>/dev/null; }
+bad_path() { case "$1" in /*|*..*|0[1-4]-*|profile.md|MAP.md) return 0;; esac; return 1; }
+update_fetch() { # download the newest version; prints NEW=<folder> and VERSION=<x>
+  local t n; t=$(mktemp -d) || { echo "FAIL could not make a temporary folder"; return; }
+  if curl -fsSL "$(source_url)/archive/refs/heads/main.zip" -o "$t/cosm.zip" 2>"$t/err" && unzip -q "$t/cosm.zip" -d "$t" 2>>"$t/err"; then
+    n=$(ls -d "$t"/*/ 2>/dev/null | head -1)
+    if [ -n "$n" ] && [ -f "$n/VERSION" ]; then echo "NEW=${n%/}"; echo "VERSION=$(cat "$n/VERSION")"; return; fi
+  fi
+  echo "FAIL $(head -c 300 "$t/err" 2>/dev/null)"; rm -rf "$t"
+}
+update_apply() { # replace the system files from folder $1 (made by update-fetch)
+  local n="$1" p d count=0 dropped=""
+  case "$n" in "${TMPDIR%/}"/tmp.*/*|/tmp/tmp.*/*|/private/var/folders/*/tmp.*/*|/var/folders/*/tmp.*/*) ;; *) echo "FAIL not an update folder: $n"; return;; esac
+  [ -f "$n/MANIFEST" ] || { echo "FAIL no MANIFEST in $n"; return; }
+  while IFS= read -r p; do bad_path "$p" && { echo "FAIL refusing path: $p"; return; }; done < <(manifest_paths "$n/MANIFEST"; manifest_paths MANIFEST)
+  while IFS= read -r p; do [ -e "$n/${p%/}" ] || { echo "FAIL missing in new version: $p"; return; }; done < <(manifest_paths "$n/MANIFEST")
+  while IFS= read -r p; do
+    case "$p" in MANIFEST|VERSION) continue;; esac
+    d="${p%/}"; mkdir -p "$(dirname "./$d")" || { echo "FAIL $p (replaced so far: $count)"; return; }
+    if [ "$p" != "$d" ]; then rm -rf "./$d" && cp -R "$n/$d" "./$d"; else cp "$n/$d" "./$d"; fi || { echo "FAIL $p (replaced so far: $count)"; return; }
+    count=$((count+1))
+  done < <(manifest_paths "$n/MANIFEST")
+  while IFS= read -r p; do
+    grep -qxF -- "$p" "$n/MANIFEST" && continue
+    [ -e "$n/${p%/}" ] && continue
+    bad_path "$p" && continue
+    rm -rf "./${p%/}" && dropped="$dropped $p"
+  done < <(manifest_paths MANIFEST)
+  cp "$n/MANIFEST" ./MANIFEST && cp "$n/VERSION" ./VERSION || { echo "FAIL MANIFEST/VERSION (files replaced: $count)"; return; }
+  echo "OK replaced $count, now version $(cat VERSION)"; [ -n "$dropped" ] && echo "REMOVED$dropped"
+  for p in $(grep -o '"[^"]*"' "$n/.obsidian/community-plugins.json" 2>/dev/null | tr -d '"'); do grep -q "\"$p\"" .obsidian/community-plugins.json 2>/dev/null || echo "NEW_PLUGIN $p"; done
+}
+update_cleanup() { # remove the temporary folder update-fetch made, and nothing else
+  local t; t=$(printf '%s' "$1" | sed -E 's#^(.*/tmp\.[A-Za-z0-9]+)(/.*)?$#\1#')
+  case "$t" in "${TMPDIR%/}"/tmp.*|/tmp/tmp.*|/private/var/folders/*/tmp.*|/var/folders/*/tmp.*) ;; *) echo "FAIL not a temporary folder: $1"; return;; esac
+  case "${t##*/}" in tmp.*) rm -rf "$t" && echo "OK cleaned";; *) echo "FAIL not a temporary folder: $1";; esac
+}
+
 case "$1" in
   due) due "$2" ;; recent) recent ;; unmapped) unmapped ;; inbox-count) inbox_count ;; inbox-list) inbox_list ;;
   last-review) last_review ;; newest-log) newest_log ;; log-summary) log_summary ;; pages) pages ;; toolbox) toolbox ;;
   long-pages) long_pages ;; log-headings) log_headings ;; as-of) as_of ;; stale) stale ;; notes-folders) notes_folders ;;
   dup-names) dup_names ;; broken-links) broken_links ;; stray-files) stray_files ;; oversize) oversize ;;
   logs-since-review) logs_since_review ;; open-page) open_page ;; version) version ;; source) source_url ;;
+  update-fetch) update_fetch ;; update-apply) update_apply "$2" ;; update-cleanup) update_cleanup "$2" ;;
 esac
 exit 0
