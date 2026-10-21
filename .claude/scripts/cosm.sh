@@ -14,7 +14,9 @@ due() { # open tasks with a date, due within $1 days or overdue
     if (d<=lim) print}'
 }
 recent() { find 02-spaces -name '*.md' -not -name todo.md -not -name tasks.md -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -5; }
-unmapped() { find 02-spaces 03-knowledge 03-knowledge/skills -mindepth 1 -maxdepth 1 -type d 2>/dev/null | while IFS= read -r d; do grep -qF "$d/" MAP.md || echo "$d/"; done; }
+unmapped() { # a folder counts as mapped when MAP.md lists it by name, indented ("- Name/") or as a full path (".../Name/"); two folders with one name count as one
+  find 02-spaces 03-knowledge 03-knowledge/skills -mindepth 1 -maxdepth 1 -type d 2>/dev/null | while IFS= read -r d; do
+    n=${d##*/}; grep -qF -- "- $n/" MAP.md || grep -qF -- "/$n/" MAP.md || echo "$d/"; done; }
 inbox_count() { find 01-inbox -type f -not -name '.*' 2>/dev/null | wc -l | tr -d ' '; }
 inbox_list() { find 01-inbox -type f -not -name '.*' -print0 2>/dev/null | xargs -0 ls -tr 2>/dev/null; }
 last_review() { cat .cosm-last-review 2>/dev/null || echo never; }

@@ -29,7 +29,7 @@ A procedure is a skill candidate when it was done the same way twice or more (th
 
 > "You sorted supplier invoices the same way three times: check the VAT line, match the order, file under the supplier. Make it a skill, `invoices`? ==y== yes · ==n== no"
 
-On ==y==, write `03-knowledge/skills/<name>/SKILL.md`, add its line to `MAP.md` (`- 03-knowledge/skills/<name>/ — <when it applies, in the user's words>`), and move the matching preference lines (name them in the proposal) into `03-knowledge/preferences/<name>.md`, with its `MAP.md` line if the file is new. How to write it:
+On ==y==, write `03-knowledge/skills/<name>/SKILL.md`, add its line to `MAP.md`, indented below `03-knowledge/skills/` (`  - <name>/ — <when it applies, in the user's words>`), and move the matching preference lines (name them in the proposal) into `03-knowledge/preferences/<name>.md`, with its `MAP.md` line if the file is new. How to write it:
 - Starts with `# <Name>` and one line on what it does. No frontmatter: the agent finds it through its `MAP.md` line.
 - The steps as rules the agent can follow on its own, short. Examples only for the shape of an output; a rule that needs an example to be understood is rewritten.
 - Self-contained: what it needs sits in its folder; facts that live on a page (a price, a contact) are linked, not copied. Name the user's own tools if they are the user's (their mail app, their spreadsheet).

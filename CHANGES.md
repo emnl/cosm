@@ -1,5 +1,9 @@
 # Changes
 
+## 0.6.1
+- The agent treats your vault as your own space: bold inside it, careful with anything that leaves it.
+- New folders are listed in your map by name, indented under their folder; /recall and /review no longer report them as missing.
+
 ## 0.6
 - Updates now reach almost everything: cosm's own settings in Obsidian and the chat are added to yours instead of replacing them, so your own choices stay.
 - Updating from 0.4 or 0.5 works: your folders are renamed to 02-spaces and 03-knowledge for you, with the paths in your map fixed. No fresh install needed.

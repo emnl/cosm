@@ -65,7 +65,7 @@ On ==y==, write:
 - The user's own space: `02-spaces/<user>/<user>.md`, a state page for their own work and admin (`<user>`: their first name, as they write it), and `02-spaces/<user>/todo.md` with the To do lines from the block, each linked to its space.
 - One folder per space: `02-spaces/<space>/<space>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
 - One folder per person and company, `03-knowledge/people/<name>/<name>.md` and `03-knowledge/companies/<name>/<name>.md`, with a state page in the same shape.
-- `MAP.md`: one line per new space folder.
+- `MAP.md`: one line per new space folder, indented below `02-spaces/` (`  - <space>/ — a few words`).
 - `.cosm-last-review`: today's date, one line, so the first review reminder comes a week from now.
 
 Then say in a few plain lines what was made: "I made your profile, a page for each of your 5 spaces (Acme supply deal, Q4 budget …), pages for 10 people and 5 companies, and and your to-do list on your own page [[<user>]], which is yours to change however you like."
