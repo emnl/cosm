@@ -3,7 +3,7 @@ description: Get the newest version of cosm — replaces cosm's own files, never
 ---
 # /update
 
-This vault: version !`cat VERSION 2>/dev/null || echo unknown`. Source: !`grep -m1 '^# source:' MANIFEST | sed 's/^# source: *//'`
+This vault: version !`bash .claude/scripts/cosm.sh version`. Source: !`bash .claude/scripts/cosm.sh source`
 
 Each command runs in a new shell, so a path one command prints must be written out in full in the next; never rely on a variable from an earlier command.
 

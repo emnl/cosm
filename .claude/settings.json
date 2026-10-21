@@ -4,16 +4,6 @@
   "autoCompactEnabled": false,
   "includeGitInstructions": false,
   "permissions": {
-    "allow": [
-      "Bash(uvx:*)",
-      "Bash(uv run:*)",
-      "Bash(textutil:*)",
-      "Bash(find:*)",
-      "Bash(grep:*)",
-      "Bash(date:*)",
-      "Bash(curl -sL https://github.com/:*)",
-      "Bash(unzip:*)"
-    ],
     "deny": [
       "mcp__claude_ai_Gmail__send_message",
       "mcp__claude_ai_Gmail__reply",

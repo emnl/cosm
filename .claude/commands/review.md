@@ -10,40 +10,40 @@ Three parts, in order. Each finding is proposed on its own, with the keys that a
 Today: !`date +%Y-%m-%d`
 
 Open tasks with a date, due within 7 days or overdue:
-!`grep -rn --include='*.md' -E '^[[:space:]]*- \[ \].*[0-9]{4}-[0-9]{2}-[0-9]{2}' 01-inbox 02-subjects 03-references 2>/dev/null | awk -v lim="$(date -v+7d +%F)" '{s=$ 0; sub(/^[^:]*:[0-9]+:/,"",s); if (match(s,/📅 *[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/)) d=substr(s,RSTART+RLENGTH-10,10); else {gsub(/\[\[[^]]*\]\]/,"",s); if (!match(s,/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/)) next; d=substr(s,RSTART,10)} if (d<=lim) print}'`
+!`bash .claude/scripts/cosm.sh due 7`
 
 State pages over about 60 lines:
-!`setopt NULL_GLOB 2>/dev/null; for f in 02-subjects/*/*.md 03-references/*/*.md; do [ -f "$f" ] || continue; case "$f" in */todo.md|*/tasks.md) continue;; esac; n=$(wc -l < "$f" | tr -d ' '); [ "$n" -gt 60 ] && echo "$f ($n lines)"; done 2>/dev/null; true`
+!`bash .claude/scripts/cosm.sh long-pages`
 
 Dated headings or log sections on state pages:
-!`setopt NULL_GLOB 2>/dev/null; grep -n -E '^##+ (.*[^[:alnum:]])?([0-9]{4}-[0-9]{2}-[0-9]{2}|Log|History|Changelog|Updates)([^[:alnum:]].*)?$' 02-subjects/*/*.md 03-references/*/*.md 2>/dev/null | grep -v -E '/(todo|tasks)\.md:'; true`
+!`bash .claude/scripts/cosm.sh log-headings`
 
 Each subject's *As of* date and its newest note:
-!`setopt NULL_GLOB 2>/dev/null; for d in 02-subjects/*/; do [ -d "$d" ] || continue; s=$(basename "$d"); a=$(grep -m1 -o -E '\*As of [0-9]{4}-[0-9]{2}-[0-9]{2}' "$d$s.md" 2>/dev/null | grep -o -E '[0-9-]{10}'); n=$(ls "$d"notes 2>/dev/null | grep -o -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort | tail -1); echo "$s: as of ${a:-none}, newest note ${n:-none}"; done 2>/dev/null; true`
+!`bash .claude/scripts/cosm.sh as-of`
 
 Subjects with nothing changed in 90 days:
-!`setopt NULL_GLOB 2>/dev/null; for d in 02-subjects/*/; do [ -d "$d" ] || continue; [ -z "$(find "$d" -type f -mtime -90 2>/dev/null | head -1)" ] && echo "$d"; done 2>/dev/null; true`
+!`bash .claude/scripts/cosm.sh stale`
 
 Folders inside a `notes/`:
-!`find 02-subjects -path '*/notes/*' -type d 2>/dev/null`
+!`bash .claude/scripts/cosm.sh notes-folders`
 
 Two pages with the same name:
-!`find 01-inbox 02-subjects 03-references 04-archive -name '*.md' -not -name todo.md -not -name tasks.md -not -path '03-references/skills/*' 2>/dev/null | awk -F/ '{print tolower($NF)}' | sort | uniq -d`
+!`bash .claude/scripts/cosm.sh dup-names`
 
 Links to pages that don't exist:
-!`grep -rhoE --exclude-dir=skills '\[\[[^]|#]+' --include='*.md' 02-subjects 03-references 2>/dev/null | sed -E 's/^\[\[//; s/\\$//; s#.*/##; s/\.md$//' | grep -v -E '\.[A-Za-z0-9]{2,4}$' | sort -uf | while IFS= read -r l; do [ -n "$(find . -iname "$l.md" -not -path './.*' 2>/dev/null | head -1)" ] || echo "[[$l]]"; done`
+!`bash .claude/scripts/cosm.sh broken-links`
 
 Folders not yet in `MAP.md`:
-!`find 02-subjects 03-references 03-references/skills -mindepth 1 -maxdepth 1 -type d 2>/dev/null | while read -r d; do grep -qF "$d/" MAP.md || echo "$d/"; done`
+!`bash .claude/scripts/cosm.sh unmapped`
 
 Files that aren't markdown, or don't belong at the root:
-!`find 02-subjects 03-references 04-archive -type f -not -name '*.md' -not -name '.*' -not -path '03-references/skills/*' 2>/dev/null; ls -p | grep -v / | grep -v -x -E 'AGENTS.md|CLAUDE.md|HOME.md|HELP.md|MAP.md|README.md|CHANGES.md|MANIFEST|VERSION|profile.md'; true`
+!`bash .claude/scripts/cosm.sh stray-files`
 
 Preferences and profile over their size:
-!`setopt NULL_GLOB 2>/dev/null; for f in 03-references/preferences/*.md; do [ -f "$f" ] && [ "$(wc -c < "$f")" -gt 2000 ] && echo "$f"; done 2>/dev/null; [ -f profile.md ] && [ "$(wc -c < profile.md)" -gt 1500 ] && echo profile.md; true`
+!`bash .claude/scripts/cosm.sh oversize`
 
 Session logs since the last review:
-!`L=$(cat .cosm-last-review 2>/dev/null); L=$(date -j -v-7d -f %Y-%m-%d "${L:-2000-01-01}" +%F); find 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ -v l="$L" '$NF >= l' | sort`
+!`bash .claude/scripts/cosm.sh logs-since-review`
 
 ## 1. Due
 

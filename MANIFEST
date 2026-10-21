@@ -16,6 +16,7 @@ CHANGES.md
 MANIFEST
 README.md
 .claude/settings.json
+.claude/settings.local.json
 .claude/commands/setup.md
 .claude/commands/recall.md
 .claude/commands/inbox.md
@@ -23,6 +24,7 @@ README.md
 .claude/commands/reflect.md
 .claude/commands/review.md
 .claude/commands/update.md
+.claude/scripts/cosm.sh
 .claude/skills/email/
 .claude/skills/meeting-notes/
 .claude/skills/tools/

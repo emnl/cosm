@@ -8,7 +8,7 @@ What this Mac has, and the right tool for each file type.
 
 ## What is installed
 
-uv: !`~/.local/bin/uv --version 2>/dev/null || command -v uv 2>/dev/null || echo "not installed"`
+uv: !`bash .claude/scripts/cosm.sh toolbox`
 
 Without uv, only the "No uv" column under Reading works and nothing under Making does; offer the install: "Install the toolbox? It lets me read and make Word, Excel, PowerPoint and PDF files. About 1 minute, nothing outside your user folder. <kbd>y</kbd> yes · <kbd>n</kbd> no", then run `curl -LsSf https://astral.sh/uv/install.sh | sh`. If `uv` is not on the path afterwards, call it as `~/.local/bin/uv`.
 

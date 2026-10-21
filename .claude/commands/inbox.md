@@ -4,7 +4,7 @@ description: Go through the inbox — file each item where it belongs and carry 
 # /inbox
 
 Waiting in `01-inbox/` (oldest first):
-!`find 01-inbox -type f -not -name '.*' -print0 2>/dev/null | xargs -0 ls -tr 2>/dev/null`
+!`bash .claude/scripts/cosm.sh inbox-list`
 
 If it is empty, say so in one line and stop. Otherwise take one item at a time, oldest first.
 

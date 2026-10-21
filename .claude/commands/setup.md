@@ -9,9 +9,9 @@ Get a new vault to useful in about three minutes. Propose rather than interview:
 
 Today: !`date +%Y-%m-%d`
 
-Pages: !`find 02-subjects 03-references -name '*.md' 2>/dev/null`
+Pages: !`bash .claude/scripts/cosm.sh pages`
 
-Toolbox: !`~/.local/bin/uv --version 2>/dev/null || echo not installed`
+Toolbox: !`bash .claude/scripts/cosm.sh toolbox`
 
 On a rerun, propose only what isn't listed above and never overwrite a page that exists: leave filled sections of `profile.md` as they are, add new To do lines at the end of `todo.md`, and skip step 6 if the toolbox is installed.
 
