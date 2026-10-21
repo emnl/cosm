@@ -1,0 +1,14 @@
+body {
+  --line-height-normal: 1.8;
+  --line-height-tight: 1.5;
+  --font-text-size: 16px;
+  letter-spacing: 0.01em;
+}
+
+
+/* cosm: Mac system font instead of the theme's Vollkorn */
+body {
+  --font-text-theme: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-interface-theme: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --font-monospace-theme: ui-monospace, "SF Mono", Menlo, monospace;
+}

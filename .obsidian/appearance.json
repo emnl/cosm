@@ -1,0 +1,8 @@
+{
+  "showRibbon": false,
+  "cssTheme": "Catppuccin",
+  "theme": "moonstone",
+  "enabledCssSnippets": [
+    "cosm"
+  ]
+}

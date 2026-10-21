@@ -1,0 +1,10 @@
+{
+  "model": "opus",
+  "permissionMode": "auto",
+  "providerConfigs": {
+    "claude": {
+      "enabled": true,
+      "visibleModels": ["opus", "sonnet", "fable", "haiku"]
+    }
+  }
+}
