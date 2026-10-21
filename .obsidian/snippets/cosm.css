@@ -55,6 +55,6 @@ body {
   word-break: normal;
   width: 1%;
 }
-.claudian-message-content table thead:not(:has(th :is(*, *::before))):has(th:first-child:empty) {
+.claudian-message-content table thead:has(th:first-child:empty) {
   display: none;
 }
