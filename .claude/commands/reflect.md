@@ -20,7 +20,10 @@ Anything durable from the whole session that isn't on its page yet: a correction
 
 If nothing was learned or missed, say so in one line.
 
-## 3. A skill?
+## 3. A skill, or a skill update?
+
+When a skill was used this session and the user corrected it, or did a step differently, propose updating it: a skill in `03-references/skills/` is edited directly (show the changed lines, write on `y`); for a skill that ships with cosm (in `.claude/skills/`), the change goes into its preferences file instead.
+
 
 A procedure is a skill candidate when it was done the same way twice or more (this session, or this session and an earlier one in a log), or when the user had to explain the same steps again. Propose each candidate, one at a time:
 

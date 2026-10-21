@@ -70,7 +70,7 @@ Read the Decided and Open sections of the logs above. For anything a page doesn'
 
 Then read the preference files and the same logs, and propose, one at a time:
 - **Preferences:** a way of working the user showed in several sessions that no preference line says yet; a line corrected several times (a firmer line, or moving it into its skill); two lines that say the same thing (merge them).
-- **Skills:** a procedure done the same way in several sessions, made into a skill the way `/reflect` does.
+- **Skills:** a procedure done the same way in several sessions, made into a skill the way `/reflect` does; or an update to an existing skill the logs show was corrected or done differently (edited directly for a skill in `03-references/skills/`, as preference lines for one that ships with cosm).
 
 ## Finish
 
