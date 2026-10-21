@@ -122,7 +122,7 @@ The files listed in `MANIFEST` are system files. Only `/update` changes them; an
 
 When the agent asks the user to choose, it ends with one line of the keys that apply, and each key always means the same:
 
-`y` yes, do it · `n` no · `s` skip, next item · `1` `2` … pick an option · `a` archive (email) · `d` create the draft (email)
+`y` yes, do it · `n` no · `s` skip, next item · `1` `2` … pick an option · `a` archive (email) · `d` write the draft (email)
 
 Anything else the user types is an answer or a correction.
 

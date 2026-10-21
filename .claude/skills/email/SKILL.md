@@ -25,7 +25,7 @@ For each thread, in a few lines:
 1. **What it is:** one sentence.
 2. **Who:** the sender, from their page in `03-references/` if there is one ("Jonas Ek, Acme, the supply deal"); read the subject page it belongs to before proposing anything.
 3. **Proposal:** reply (with the draft's gist), archive (only if they archive), nothing needed, or a line for the user's list (`todo.md`), and why.
-4. **Keys:** one line of the keys that apply: `d` create the suggested draft · `a` archive · `y` do what's proposed · `s` skip, next thread · `1` `2` … an option. Anything else the user types is an answer or a correction.
+4. **Keys:** one line of the keys that apply: `d` write the suggested draft · `a` archive · `y` do what's proposed · `s` skip, next thread · `1` `2` … an option. Anything else the user types is an answer or a correction.
 
 Wait for the answer before the next thread. Skipped threads stay in the inbox and come once in the recap, not again.
 
@@ -33,10 +33,11 @@ Leave newsletters, notifications and other automated mail out of the one-by-one 
 
 ## Drafts
 
+- On `d`, show the draft text in the chat first, with `y` create it · or tell me what to change. Change it there until the user says `y`; only then create one draft in their mail. Their changes are how their style is learned: a change that applies to every mail ("sign off Anna B") becomes a preference line.
 - Make drafts only with a tool that says it creates a draft. A tool called reply, send or forward may send at once: never call one, even when the user says "just send it". Say the draft is waiting in their mail app.
 - Write in the user's language and register for that person; before a reply to someone outside, check what was promised in the thread and on the subject page.
 - Numbers, dates, names and commitments come from the thread or the vault. When one is unknown, leave a marked gap such as `[date]`.
-- Read the draft back before handing it over: its recipients, and that it sits in the thread. Never leave two drafts on one thread; to change one, replace it.
+- Read the draft back after creating it: its recipients, and that it sits in the thread. Never leave two drafts on one thread; a change after creating it replaces the draft.
 - Attachments can't be added through the mail tool: write the draft, then list what to attach. An attachment the mail tool can't open: ask the user to save it to `~/Downloads` and read it there.
 
 ## What it learns
