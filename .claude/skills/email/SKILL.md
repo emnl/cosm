@@ -42,6 +42,7 @@ Leave newsletters, notifications and other automated mail out of the one-by-one 
 ## Offer once
 
 Each of these is offered the first time it applies (`AGENTS.md` § Learning):
+- When the inbox has more than about 50 threads: "Your inbox has 1,240 threads. Start fresh? `1` archive everything older than 3 months in one go (it stays searchable) · `2` work only the last 4 weeks, leave the rest · `n` go through it all". Explain once, before it: "The inbox is your to-do list: archived means done." Count the inbox before listing it.
 - When the user says they sent a reply: "Archive a thread when you say it's sent, from now on? `y` · `n`"
 
 ## Never
