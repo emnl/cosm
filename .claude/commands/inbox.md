@@ -15,7 +15,7 @@ Work out what it is, then:
 | Item | Do |
 |---|---|
 | A meeting note, transcript or meeting export | follow the meeting-notes skill |
-| A session log (`*-log-*.md`) | check that what its Decided and Open sections say is on the pages, and write it where it isn't; propose its proposed tasks that aren't on the user's list yet; move it to `04-archive/logs/<YYYY-MM>/`, the month taken from its file name |
+| A session log (`… Log – ….md`) | check that what its Decided and Open sections say is on the pages, and write it where it isn't; propose its proposed tasks that aren't on the user's list yet; move it to `04-archive/logs/<YYYY-MM>/`, the month taken from its file name |
 | A note, an idea, a fact | put it where it belongs: a line on a state page, or a dated note in the subject's `notes/` when it is longer than a line or two. The user's words are kept as written |
 | A clipped web page | a dated note in the subject it is for, with its link at the top (from its `source:` line) and any frontmatter dropped |
 | Something to do | propose it for the user's list, linked to its subject |

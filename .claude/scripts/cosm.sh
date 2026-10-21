@@ -19,7 +19,7 @@ inbox_count() { find 01-inbox -type f -not -name '.*' 2>/dev/null | wc -l | tr -
 inbox_list() { find 01-inbox -type f -not -name '.*' -print0 2>/dev/null | xargs -0 ls -tr 2>/dev/null; }
 last_review() { cat .cosm-last-review 2>/dev/null || echo never; }
 log_summary() { local f; f=$(newest_log); [ -n "$f" ] && { echo "$f"; awk '/^## Summary/{f=1;next} /^## /{f=0} f' "$f"; }; }
-newest_log() { find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ '{print $NF "\t" $0}' | sort | tail -1 | cut -f2; }
+newest_log() { find 01-inbox 04-archive/logs -name '* Log – *.md' 2>/dev/null | awk -F/ '{print $NF "\t" $0}' | sort | tail -1 | cut -f2; }
 pages() { find 02-subjects 03-references -name '*.md' 2>/dev/null; }
 toolbox() { ~/.local/bin/uv --version 2>/dev/null || command -v uv 2>/dev/null || echo "not installed"; }
 long_pages() { for f in 02-subjects/*/*.md 03-references/*/*/*.md; do case "$f" in */todo.md|*/tasks.md|*/SKILL.md) continue;; esac; n=$(wc -l < "$f" | tr -d ' '); [ "$n" -gt 60 ] && echo "$f ($n lines)"; done; }
@@ -38,7 +38,7 @@ stray_files() {
   ls -p | grep -v / | grep -v -x -E 'AGENTS.md|CLAUDE.md|HOME.md|HELP.md|MAP.md|README.md|CHANGES.md|MANIFEST|VERSION|profile.md'
 }
 oversize() { for f in 03-references/preferences/*.md; do [ "$(wc -c < "$f")" -gt 2000 ] && echo "$f"; done; [ -f profile.md ] && [ "$(wc -c < profile.md)" -gt 1500 ] && echo profile.md; }
-logs_since_review() { local l; l=$(cat .cosm-last-review 2>/dev/null); l=$(date -j -v-7d -f %Y-%m-%d "${l:-2000-01-01}" +%F 2>/dev/null); find 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ -v l="$l" '$NF >= l' | sort; }
+logs_since_review() { local l; l=$(cat .cosm-last-review 2>/dev/null); l=$(date -j -v-7d -f %Y-%m-%d "${l:-2000-01-01}" +%F 2>/dev/null); find 04-archive/logs -name '* Log – *.md' 2>/dev/null | awk -F/ -v l="$l" '$NF >= l' | sort; }
 open_page() { local f; f=$(osascript -l JavaScript .claude/scripts/open-page.js "$PWD/.obsidian/workspace.json" 2>/dev/null); [ -n "$f" ] && { n=${f##*/}; echo "The page open in Obsidian right now: [[${n%.md}]] ($f)"; }; }
 version() { cat VERSION 2>/dev/null || echo unknown; }
 source_url() { grep -m1 '^# source:' MANIFEST 2>/dev/null | sed 's/^# source: *//'; }
