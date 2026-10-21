@@ -46,4 +46,4 @@ Each of these is offered the first time it applies (`AGENTS.md` § Learning):
 
 ## Never
 
-Send a mail. Delete a mail, or change filters or labels, without the user's `y` on that exact change. Archive on your own judgment: only on `a` or `y`.
+Send a mail. Delete a mail, or change filters or labels, without the user's `y` on that exact change. Archive on your own judgment: only on `a`, `y`, or a preference line the user agreed to.
