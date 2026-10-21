@@ -25,7 +25,7 @@ Direct and efficient: lead with the answer, no filler or praise, say plainly whe
 |---|---|
 | `01-inbox/` | anything dropped in by the user; `/inbox` files it |
 | `02-subjects/<subject>/` | something the user runs (a project, a client, an area): `<subject>.md` (state page), `tasks.md`, `notes/` (dated notes such as meetings) |
-| `03-references/<kind>/` | what the user knows about something set elsewhere: one page each, `<name>.md`. `people/` and `companies/` to start; when something fits neither (a car, a place, a book, a tool), propose a new kind (`things/`, `places/`) and create it on <kbd>y</kbd> |
+| `03-references/<kind>/<name>/` | what the user knows about something set elsewhere: one folder each, with its state page `<name>.md` and, when it needs them, `notes/` for dated notes about it. `people/` and `companies/` to start; when something fits neither (a car, a place, a book, a tool), propose a new kind (`things/`, `places/`) and create it on <kbd>y</kbd> |
 | `03-references/skills/<name>/` | skills the user has made: `SKILL.md` and any files it needs |
 | `03-references/preferences/` | `<name>.md`: how the user wants one kind of work done |
 | `04-archive/subjects/` | finished subjects, same layout as `02-subjects/` |
@@ -60,11 +60,11 @@ Root files: `HOME.md` (start page), `MAP.md` (vault map), `profile.md`, `.cosm-l
 | Something the user will do | `02-subjects/<user>/todo.md` (the user's list: on <kbd>y</kbd> only) |
 | Something the agent should do or check later | `02-subjects/<subject>/tasks.md` |
 | A meeting or other dated note | `02-subjects/<subject>/notes/<YYYY-MM-DD>-<topic>.md` |
-| A fact about a person, company or other reference | `03-references/<kind>/<name>.md` |
+| A fact about a person, company or other reference | `03-references/<kind>/<name>/<name>.md` |
 
 ### Page shapes
 
-Every subject and every reference has one state page, `<name>.md`, named after its folder or file: what is true now.
+Every subject and every reference is a folder with one state page, `<name>/<name>.md`, named after its folder: what is true now. Dated notes about it go in its `notes/`.
 
 ```
 # Acme supply deal
@@ -128,7 +128,7 @@ Anything else the user types is an answer or a correction.
 
 ## Messages to the user
 
-- The chat shows a linked note: the one that was open when the chat started, even if the user has moved on since. Use it only when the user refers to "this note" or "this page".
+- Each message tells you the page open in Obsidian right now. When the user says "this page" or "this note", it means that one. Ignore the chat's linked note: it is the page that was open when the chat started.
 
 - No code blocks, except a draft's text or a command the user should run. Show structured things as a short table or bold labels.
 - Name pages by their name, as links, without `.md` or folder paths: "your page [[acme-deal]]", not `02-subjects/acme-deal/acme-deal.md`.

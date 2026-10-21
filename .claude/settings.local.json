@@ -11,5 +11,17 @@
       "Bash(unzip:*)",
       "Bash(bash .claude/scripts/cosm.sh:*)"
     ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/scripts/cosm.sh open-page"
+          }
+        ]
+      }
+    ]
   }
 }

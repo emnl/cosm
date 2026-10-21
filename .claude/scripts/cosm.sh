@@ -22,11 +22,11 @@ log_summary() { local f; f=$(newest_log); [ -n "$f" ] && { echo "$f"; awk '/^## 
 newest_log() { find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ '{print $NF "\t" $0}' | sort | tail -1 | cut -f2; }
 pages() { find 02-subjects 03-references -name '*.md' 2>/dev/null; }
 toolbox() { ~/.local/bin/uv --version 2>/dev/null || command -v uv 2>/dev/null || echo "not installed"; }
-long_pages() { for f in 02-subjects/*/*.md 03-references/*/*.md; do case "$f" in */todo.md|*/tasks.md) continue;; esac; n=$(wc -l < "$f" | tr -d ' '); [ "$n" -gt 60 ] && echo "$f ($n lines)"; done; }
-log_headings() { grep -n -E '^##+ (.*[^[:alnum:]])?([0-9]{4}-[0-9]{2}-[0-9]{2}|Log|History|Changelog|Updates)([^[:alnum:]].*)?$' 02-subjects/*/*.md 03-references/*/*.md 2>/dev/null | grep -v -E '/(todo|tasks)\.md:'; }
-as_of() { for d in 02-subjects/*/; do s=$(basename "$d"); a=$(grep -m1 -o -E '\*As of [0-9]{4}-[0-9]{2}-[0-9]{2}' "$d$s.md" 2>/dev/null | grep -o -E '[0-9-]{10}'); n=$(ls "$d"notes 2>/dev/null | grep -o -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort | tail -1); echo "$s: as of ${a:-none}, newest note ${n:-none}"; done; }
+long_pages() { for f in 02-subjects/*/*.md 03-references/*/*/*.md; do case "$f" in */todo.md|*/tasks.md|*/SKILL.md) continue;; esac; n=$(wc -l < "$f" | tr -d ' '); [ "$n" -gt 60 ] && echo "$f ($n lines)"; done; }
+log_headings() { grep -n -E '^##+ (.*[^[:alnum:]])?([0-9]{4}-[0-9]{2}-[0-9]{2}|Log|History|Changelog|Updates)([^[:alnum:]].*)?$' 02-subjects/*/*.md 03-references/*/*/*.md 2>/dev/null | grep -v -E '/(todo|tasks|SKILL)\.md:'; }
+as_of() { for d in 02-subjects/*/ 03-references/*/*/; do case "$d" in 03-references/skills/*) continue;; esac; s=$(basename "$d"); a=$(grep -m1 -o -E '\*As of [0-9]{4}-[0-9]{2}-[0-9]{2}' "$d$s.md" 2>/dev/null | grep -o -E '[0-9-]{10}'); n=$(ls "$d"notes 2>/dev/null | grep -o -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}' | sort | tail -1); echo "$s: as of ${a:-none}, newest note ${n:-none}"; done; }
 stale() { for d in 02-subjects/*/; do [ -z "$(find "$d" -type f -mtime -90 2>/dev/null | head -1)" ] && echo "$d"; done; }
-notes_folders() { find 02-subjects -path '*/notes/*' -type d 2>/dev/null; }
+notes_folders() { find 02-subjects 03-references -path '*/notes/*' -type d 2>/dev/null; }
 dup_names() { find 01-inbox 02-subjects 03-references 04-archive -name '*.md' -not -name todo.md -not -name tasks.md -not -path '03-references/skills/*' 2>/dev/null | awk -F/ '{print tolower($NF)}' | sort | uniq -d; }
 broken_links() {
   grep -rhoE --exclude-dir=skills '\[\[[^]|#]+' --include='*.md' 02-subjects 03-references 2>/dev/null |
@@ -39,6 +39,7 @@ stray_files() {
 }
 oversize() { for f in 03-references/preferences/*.md; do [ "$(wc -c < "$f")" -gt 2000 ] && echo "$f"; done; [ -f profile.md ] && [ "$(wc -c < profile.md)" -gt 1500 ] && echo profile.md; }
 logs_since_review() { local l; l=$(cat .cosm-last-review 2>/dev/null); l=$(date -j -v-7d -f %Y-%m-%d "${l:-2000-01-01}" +%F 2>/dev/null); find 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ -v l="$l" '$NF >= l' | sort; }
+open_page() { local f; f=$(plutil -extract lastOpenFiles.0 raw -o - .obsidian/workspace.json 2>/dev/null); [ -n "$f" ] && echo "The page open in Obsidian right now: [[${f%.md}]] ($f)"; }
 version() { cat VERSION 2>/dev/null || echo unknown; }
 source_url() { grep -m1 '^# source:' MANIFEST 2>/dev/null | sed 's/^# source: *//'; }
 
@@ -47,6 +48,6 @@ case "$1" in
   last-review) last_review ;; newest-log) newest_log ;; log-summary) log_summary ;; pages) pages ;; toolbox) toolbox ;;
   long-pages) long_pages ;; log-headings) log_headings ;; as-of) as_of ;; stale) stale ;; notes-folders) notes_folders ;;
   dup-names) dup_names ;; broken-links) broken_links ;; stray-files) stray_files ;; oversize) oversize ;;
-  logs-since-review) logs_since_review ;; version) version ;; source) source_url ;;
+  logs-since-review) logs_since_review ;; open-page) open_page ;; version) version ;; source) source_url ;;
 esac
 exit 0

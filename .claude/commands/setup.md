@@ -66,7 +66,7 @@ On <kbd>y</kbd>, write:
 - `profile.md`: `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` dated lines: the answer style (`- Short answers; full detail only when I ask (<today>)`), then the two defaults, `- Tables over prose for structured data (default)` and `- One item at a time when there are several to decide (default)`.
 - The user's own subject: `02-subjects/<user>/<user>.md`, a state page for their own work and admin (`<user>`: their first name, lowercase), and `02-subjects/<user>/todo.md` with the To do lines from the block, each linked to its subject.
 - One folder per subject: `02-subjects/<subject>/<subject>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
-- One state page per person and company in `03-references/people/` and `03-references/companies/`, in the same shape.
+- One folder per person and company, `03-references/people/<name>/<name>.md` and `03-references/companies/<name>/<name>.md`, with a state page in the same shape.
 - `MAP.md`: one line per new folder.
 - `.cosm-last-review`: today's date, one line, so the first review reminder comes a week from now.
 
