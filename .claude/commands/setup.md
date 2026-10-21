@@ -30,7 +30,7 @@ In the same first message, after the opening line, ask, naming only the tools fo
 
 On ==y==, say it takes a minute or two, then read:
 - sent mail: recipients and subject lines only; open a message only to read the user's own signature
-- active threads: threads of the last 3 weeks with a real back-and-forth (the user and others both writing, three messages or more): participants and subject lines only. They are the best source for Subjects and People.
+- active threads: threads of the last 3 weeks with a real back-and-forth (the user and others both writing, three messages or more): participants and subject lines only. They are the best source for Spaces and People.
 - calendar: recurring meetings and who is in them
 
 Ask the mail tool for small pages (about 15 threads at a time, headers only where it can), so each answer fits; never save a result to a file to dig through it. Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3. Then go to step 4.
@@ -43,17 +43,17 @@ Ask the mail tool for small pages (about 15 threads at a time, headers only wher
 
 ## 4. Propose
 
-Show the proposal as bold-label lines, at most 5 subjects, 10 people and 5 companies, the ones that come up most:
+Show the proposal as bold-label lines, at most 5 spaces, 10 people and 5 companies, the ones that come up most:
 
 **You** · Anna Berg, CFO at Nordvik AB
 **Language** · Swedish (as in your mail)
 **Answers** · short (or say "full")
-**Subjects** · Acme supply deal · Q4 budget · Hiring two developers
+**Spaces** · Acme supply deal · Q4 budget · Hiring two developers
 **People** · Jonas Ek (Acme) · Sara Lind (your team) · Per Ahl (auditor)
 **Companies** · Acme AB · Lind & Co
 **To do** · Reply to Jonas on the delivery date · Q4 budget draft by 1 Nov
 
-Then one line: "I'll make a page for each subject, person and company, and your to-do list, and keep them up to date as we work. ==y== yes · or tell me what to change".
+Then one line: "I'll make a page for each space, person and company, and your to-do list, and keep them up to date as we work. ==y== yes · or tell me what to change".
 
 Language is the one their mail is in, or the one they type in. To do holds up to three things the user has to do, from active threads waiting on them and upcoming meetings; leave it out when there are none. After any change, show the block again and ask ==y== again.
 
@@ -62,13 +62,13 @@ Language is the one their mail is in, or the one they type in. To do holds up to
 On ==y==, write:
 
 - `profile.md`: `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` these lines: the answer style (`- Short answers; full detail only when I ask (<today>)`), then the two defaults, `- Tables over prose for structured data (default)` and `- One item at a time when there are several to decide (default)`.
-- The user's own subject: `02-subjects/<user>/<user>.md`, a state page for their own work and admin (`<user>`: their first name, as they write it), and `02-subjects/<user>/todo.md` with the To do lines from the block, each linked to its subject.
-- One folder per subject: `02-subjects/<subject>/<subject>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
-- One folder per person and company, `03-references/people/<name>/<name>.md` and `03-references/companies/<name>/<name>.md`, with a state page in the same shape.
-- `MAP.md`: one line per new subject folder.
+- The user's own space: `02-spaces/<user>/<user>.md`, a state page for their own work and admin (`<user>`: their first name, as they write it), and `02-spaces/<user>/todo.md` with the To do lines from the block, each linked to its space.
+- One folder per space: `02-spaces/<space>/<space>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
+- One folder per person and company, `03-knowledge/people/<name>/<name>.md` and `03-knowledge/companies/<name>/<name>.md`, with a state page in the same shape.
+- `MAP.md`: one line per new space folder.
 - `.cosm-last-review`: today's date, one line, so the first review reminder comes a week from now.
 
-Then say in a few plain lines what was made: "I made your profile, a page for each of your 5 subjects (Acme supply deal, Q4 budget …), pages for 10 people and 5 companies, and and your to-do list on your own page [[<user>]], which is yours to change however you like."
+Then say in a few plain lines what was made: "I made your profile, a page for each of your 5 spaces (Acme supply deal, Q4 budget …), pages for 10 people and 5 companies, and and your to-do list on your own page [[<user>]], which is yours to change however you like."
 
 ## 6. Toolbox
 

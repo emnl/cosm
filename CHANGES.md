@@ -1,5 +1,9 @@
 # Changes
 
+## 0.5
+- Two folders have new names: what you run is in **02-spaces** (was 02-subjects), and people, companies, your preferences and skills are in **03-knowledge** (was 03-references).
+- Already using an earlier version? Install 0.5 fresh instead of updating, and move your notes across: the agent's rules now look for the new folder names.
+
 ## 0.4.1
 - The chat opens by itself when Obsidian starts, if it was closed; the help page says how to bring it back.
 - /update does its work through cosm's own helper, which checks every file and only removes what it should.
