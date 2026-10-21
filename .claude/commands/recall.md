@@ -3,14 +3,14 @@ description: Where things stand — what's due, what you worked on last, and wha
 ---
 # /recall
 
-Takes no argument. `profile.md` and `MAP.md` are already loaded. If `profile.md` has no name in it, the vault is new: suggest `/setup` and stop.
+Takes no argument. `profile.md` and `MAP.md` are already loaded. If `## Me` in `profile.md` is empty, the vault is new: suggest `/setup` and stop.
 
 ## What the vault shows
 
 Today: !`date +%Y-%m-%d`
 
-Open tasks with a date:
-!`grep -rn --include=tasks.md -e '- \[ \].*📅' 02-subjects 2>/dev/null | head -40`
+Open tasks due within 3 days, overdue included, from anywhere in the vault:
+!`grep -rn --include='*.md' -E '^[[:space:]]*- \[ \].*[0-9]{4}-[0-9]{2}-[0-9]{2}' 01-inbox 02-subjects 03-references 2>/dev/null | awk 'BEGIN{"date -v+3d +%F" | getline lim} {if (match($0, /[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/) && substr($0, RSTART, 10) <= lim) print}'`
 
 Most recently changed pages (newest first):
 !`find 02-subjects -name '*.md' -not -name todo.md -not -name tasks.md -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -5`
@@ -27,7 +27,7 @@ Newest session log: !`find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/nu
 
 Keep it to a few lines, in the user's language:
 
-1. **Due:** tasks dated today or earlier, and those due in the next 3 days, each with its subject. Leave the line out when there are none.
+1. **Due:** the tasks above, overdue first, each with its subject. Lines from a subject's `tasks.md` are the agent's own: list them last, under "Mine:". If `profile.md` says the user keeps a list somewhere in their own shape, read it too. Leave the line out when nothing is due.
 2. **Last worked on:** the recently changed pages grouped by subject (a page in `02-subjects/acme-deal/` belongs to Acme deal). If there is a session log, read only its `## Summary` section and add one line on what happened. It is history, not a task list: never raise an item from it as open or due.
 3. **Map:** add any folder listed as not yet in `MAP.md`, with a few words, and say so in one line.
 4. **Inbox:** if items are waiting, one line: "3 items in the inbox. /inbox?"
