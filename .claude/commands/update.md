@@ -31,6 +31,8 @@ Then, for each path in the new list, with `MANIFEST` and `VERSION` last:
 
 Delete each path that this vault's `MANIFEST` lists, the new one doesn't, and the new version doesn't contain at all (a path still in the new version but off its list has become the user's: leave it). If a command fails, stop and say which paths were already replaced: `VERSION` is still the old one, so `/update` can be run again to finish.
 
+If the new version's `.obsidian/community-plugins.json` lists a plugin this vault's doesn't, ask: "Turn on <plugin>, which comes with this version? ==y== yes · ==n== no", and on ==y== add it to this vault's list (keep the user's own entries). Never remove one.
+
 Delete the temporary folder.
 
 ## 4. Report
