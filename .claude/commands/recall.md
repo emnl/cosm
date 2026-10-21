@@ -13,7 +13,7 @@ Open tasks with a date:
 !`grep -rn --include=tasks.md -e '- \[ \].*📅' 02-subjects 2>/dev/null | head -40`
 
 Most recently changed pages (newest first):
-!`find 02-subjects 03-references -name '*.md' -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -5`
+!`find 02-subjects -name '*.md' -not -name todo.md -not -name tasks.md -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -5`
 
 Folders not yet in MAP.md: !`find 02-subjects 03-references 03-references/skills -mindepth 1 -maxdepth 1 -type d 2>/dev/null | while read -r d; do grep -qF "$d/" MAP.md || echo "$d/"; done`
 
@@ -28,10 +28,10 @@ Newest session log: !`find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/nu
 Keep it to a few lines, in the user's language:
 
 1. **Due:** tasks dated today or earlier, and those due in the next 3 days, each with its subject. Leave the line out when there are none.
-2. **Last worked on:** the recently changed pages grouped by subject (a page in `02-subjects/acme-deal/` belongs to Acme deal; a reference page goes with the subject it links to, or stands alone). If there is a newest session log, read only its summary at the top and add one line from it.
+2. **Last worked on:** the recently changed pages grouped by subject (a page in `02-subjects/acme-deal/` belongs to Acme deal). If there is a session log, read only its `## Summary` section and add one line on what happened. It is history, not a task list: never raise an item from it as open or due.
 3. **Map:** add any folder listed as not yet in `MAP.md`, with a few words, and say so in one line.
 4. **Inbox:** if items are waiting, one line: "3 items in the inbox. /inbox?"
 5. **Review:** if the last review was more than 7 days ago, one line: "Last review 12 days ago. /review?"
-6. Ask which subject to pick up, as numbered options, plus "something else".
+6. If the user's message asked something, answer it here instead. Otherwise ask which subject to pick up: the subjects from Due and Last worked on, numbered, plus "something else".
 
 When the user picks a subject, read its state page (and `tasks.md` if there is one) and say where it stands and what is open, in a few lines. Then wait for what they want to do.
