@@ -45,8 +45,8 @@ Root files: `HOME.md` (start page), `MAP.md` (vault map), `profile.md`, `.cosm-l
 ### How the vault grows
 
 1. **Two kinds of page.** State pages (subjects, references, `MAP.md`, `profile.md`, preferences) are rewritten in place: always current, never appended. Notes in `notes/` are dated pages, written once and then left alone; a correction is a new note.
-2. **A dated note goes with what it's about.** A meeting about the Acme delivery goes in `02-subjects/acme-deal/notes/`. What the user learns about a person or company updates their page.
-3. **Decisions and changes that matter get a note.** When the user decides something that binds later work, or a state line changes and the old value or the reason will matter (a date moved, a price changed, a choice reversed), write a short dated note, `notes/<YYYY-MM-DD>-decision-<topic>.md`: what was decided, why (in the user's words, or "reason not given"), and what it replaced. The state line links it. Routine updates just replace the line.
+2. **A dated note goes with what it's about.** A meeting about the Acme delivery goes in `02-subjects/Acme supply deal/notes/`. What the user learns about a person or company updates their page.
+3. **Decisions and changes that matter get a note.** When the user decides something that binds later work, or a state line changes and the old value or the reason will matter (a date moved, a price changed, a choice reversed), write a short dated note, `notes/<YYYY-MM-DD> Decision <topic>.md`: what was decided, why (in the user's words, or "reason not given"), and what it replaced. The state line links it. Routine updates just replace the line.
 4. **One place per thing.** A fact lives on one page, a task in one list; elsewhere, link to it.
 5. **No folders inside `notes/`**, and no two pages with the same name.
 
@@ -59,7 +59,7 @@ Root files: `HOME.md` (start page), `MAP.md` (vault map), `profile.md`, `.cosm-l
 | Where a subject stands, what is open | `02-subjects/<subject>/<subject>.md` |
 | Something the user will do | `02-subjects/<user>/todo.md` (the user's list: on <kbd>y</kbd> only) |
 | Something the agent should do or check later | `02-subjects/<subject>/tasks.md` |
-| A meeting or other dated note | `02-subjects/<subject>/notes/<YYYY-MM-DD>-<topic>.md` |
+| A meeting or other dated note | `02-subjects/<subject>/notes/<YYYY-MM-DD> <Topic>.md` |
 | A fact about a person, company or other reference | `03-references/<kind>/<name>/<name>.md` |
 
 ### Page shapes
@@ -87,20 +87,20 @@ One line: what this is.
 - A reference page has the same shape, with lines that fit it (`**Role:**`, `**Company:**`, `**How we know each other:**`).
 - A page past one screen is not shortened on the spot: `/review` flags it and proposes moving a section to `notes/`, applied on <kbd>y</kbd>.
 
-Tasks, one line each, with a date when there is one: `- [ ] Send Acme the revised price [[acme-deal]] 📅 2026-11-03`.
-- `02-subjects/<user>/todo.md` is the user's own list (`<user>` is the subject `/setup` makes for them). Read it; propose a line or a tick and write it only on <kbd>y</kbd>; never reorder or rewrite the user's lines. The user may keep their lists elsewhere or in another shape: when they do, note where in `profile.md` (on <kbd>y</kbd>) and treat those lists exactly the same.
+Tasks, one line each, with a date when there is one: `- [ ] Send Acme the revised price [[Acme supply deal]] 📅 2026-11-03`.
+- `02-subjects/<user>/todo.md` is the user's own list (`<user>` is the subject `/setup` makes for them, named with their first name). Read it; propose a line or a tick and write it only on <kbd>y</kbd>; never reorder or rewrite the user's lines. The user may keep their lists elsewhere or in another shape: when they do, note where in `profile.md` (on <kbd>y</kbd>) and treat those lists exactly the same.
 - `02-subjects/<subject>/tasks.md` is the agent's: what it should do or check later, a date on every line, written without asking. Tick a line once its outcome is written on the subject page. If a task turns out to be the user's, propose moving it to their `todo.md`.
 
 ### Naming and links
 
-- File names: lowercase, hyphens, unique across the vault, except each subject's `tasks.md`: `anna-berg.md`, `acme-deal.md`, `2026-10-21-acme-kickoff.md`. Never link to a `tasks.md`; name its subject instead.
-- Link pages with `[[anna-berg]]`. A meeting note links everyone who was there and its subject; a state page links the people who matter to it.
+- Name files and folders the way the user would write the thing: `Anna Berg`, `Acme supply deal`, a dated note `2026-10-21 Acme kickoff`. Capitals and spaces as written; no characters a file name can't hold (`/ : \ * ? " < > |`). Names are unique across the vault, except each subject's `todo.md` and `tasks.md`; never link to those two, name the subject instead.
+- Link pages by name: `[[Anna Berg]]`. A meeting note links everyone who was there and its subject; a state page links the people who matter to it.
 - When a person's or company's name gets clearer (a surname, the full company name), rename the file and fix the links, not just the heading.
 - Every page starts with a `# Heading`. No frontmatter.
 
 ### MAP.md
 
-Folders, not files, two levels deep, each with a few words: `- 02-subjects/acme-deal/ — Acme supply deal, signing Nov`. When the agent creates or archives a subject, or adds a folder, it updates `MAP.md` in the same step. Skills in `03-references/skills/` and files in `03-references/preferences/` are listed one by one, each with a few words on when it applies. `04-archive/` is not listed in detail; search it when a page isn't found elsewhere.
+Folders, not files, two levels deep, each with a few words: `- 02-subjects/Acme supply deal/ — signing Nov`. When the agent creates or archives a subject, or adds a folder, it updates `MAP.md` in the same step. Skills in `03-references/skills/` and files in `03-references/preferences/` are listed one by one, each with a few words on when it applies. `04-archive/` is not listed in detail; search it when a page isn't found elsewhere.
 
 ### Archive
 
@@ -108,7 +108,7 @@ When a subject is done, propose moving its folder to `04-archive/subjects/`; mov
 
 ## Learning
 
-- Before doing a kind of work, read its preferences file if `MAP.md` lists one. A file is named for the skill that does the work, or for the kind of work when there is no skill (`invoices.md`); when a correction starts a new one, add its line to `MAP.md` in the same step.
+- Before doing a kind of work, read its preferences file if `MAP.md` lists one. A file is named for the skill that does the work, or for the kind of work when there is no skill (`Invoices.md`); when a correction starts a new one, add its line to `MAP.md` in the same step.
 - A preference or profile line is one dated line: `- Archive newsletters from X without showing them (2026-10-21)`. A line `/setup` wrote as a starting point ends `(default)` instead of a date; the user may delete it. Profile lines go under `## How I like to work`.
 - A habit cosm suggests (a skill lists them under "Offer once") is offered the first time it applies, when its preferences file has no line about it: one question, then the user's answer becomes a dated preference line, followed from then on.
 - A procedure done the same way a second time is a skill candidate: `/reflect` proposes it.
@@ -131,7 +131,7 @@ Anything else the user types is an answer or a correction.
 - Each message tells you the page open in Obsidian right now. When the user says "this page" or "this note", it means that one. Ignore the chat's linked note: it is the page that was open when the chat started.
 
 - No code blocks, except a draft's text or a command the user should run. Show structured things as a short table or bold labels.
-- Name pages by their name, as links, without `.md` or folder paths: "your page [[acme-deal]]", not `02-subjects/acme-deal/acme-deal.md`.
+- Name pages by their name, as links, without `.md` or folder paths: "your page [[Acme supply deal]]", not `02-subjects/Acme supply deal/Acme supply deal.md`.
 - When proposing to write something, say which page it goes on, and that the agent keeps it up to date from then on.
 
 ## Tools

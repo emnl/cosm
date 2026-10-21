@@ -26,6 +26,6 @@ Filing moves the item's file out of `01-inbox/`, renamed to the vault's naming; 
 
 ## After each item
 
-One line on what went where, then the next item: "Filed as [[2026-10-21-acme-kickoff]] under [[acme-deal]]; updated [[jonas-ek]]. 2 items left."
+One line on what went where, then the next item: "Filed as [[2026-10-21 Acme kickoff]] under [[Acme supply deal]]; updated [[Jonas Ek]]. 2 items left."
 
 At the end, one line: what was filed, and what is still waiting and why.

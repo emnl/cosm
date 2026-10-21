@@ -14,12 +14,12 @@ From the text: the date, who was there, and which subject it belongs to (`MAP.md
 
 ## 2. Save the note
 
-`02-subjects/<subject>/notes/<YYYY-MM-DD>-<topic>.md`. From the inbox, move the file there, renamed. The user's text stays exactly as written, below a heading, a **With:** line and a summary the agent adds:
+`02-subjects/<subject>/notes/<YYYY-MM-DD> <Topic>.md`. From the inbox, move the file there, renamed. The user's text stays exactly as written, below a heading, a **With:** line and a summary the agent adds:
 
 ```
 # Acme kickoff, 21 Oct
 
-**With:** [[jonas-ek]], [[sara-lind]] · **Subject:** [[acme-deal]]
+**With:** [[Jonas Ek]], [[Sara Lind]] · **Subject:** [[Acme supply deal]]
 
 ## Summary
 - **Decided:** price 84 kr/unit; delivery moved to 17 Nov
@@ -37,10 +37,10 @@ A transcript longer than a few screens is kept whole in the same note; the summa
 - The subject's state page: the lines the meeting changed, **In flight:** and `## Open` (`AGENTS.md` § Page shapes).
 - A decision that binds later work, or a change whose old value will matter, also gets its own decision note (`AGENTS.md` § How the vault grows).
 - Each person and company there: update their state page with what the meeting showed about them; if they are new, create their folder and page (`03-references/<kind>/<name>/<name>.md`), with its line in `MAP.md` if it starts a new folder.
-- The user's own actions: propose them for their list in one block: "Add to your list? 1. Confirm volumes to Acme [[acme-deal]] 📅 2026-10-24 · 2. Book the follow-up [[acme-deal]] — <kbd>y</kbd> all · <kbd>1</kbd> <kbd>2</kbd> pick · <kbd>n</kbd>". Others' actions stay in the note.
+- The user's own actions: propose them for their list in one block: "Add to your list? 1. Confirm volumes to Acme [[Acme supply deal]] 📅 2026-10-24 · 2. Book the follow-up [[Acme supply deal]] — <kbd>y</kbd> all · <kbd>1</kbd> <kbd>2</kbd> pick · <kbd>n</kbd>". Others' actions stay in the note.
 
 ## 4. Report
 
-One line on what was saved and which pages changed: "Saved [[2026-10-21-acme-kickoff]] under [[acme-deal]]; updated [[acme-deal]] (delivery 17 Nov) and [[jonas-ek]]; new page [[sara-lind]]." Under `/inbox`, this is the item's line: go on to the next item.
+One line on what was saved and which pages changed: "Saved [[2026-10-21 Acme kickoff]] under [[Acme supply deal]]; updated [[Acme supply deal]] (delivery 17 Nov) and [[Jonas Ek]]; new page [[Sara Lind]]." Under `/inbox`, this is the item's line: go on to the next item.
 
 When the user corrects how a meeting is written up ("always a Decisions heading first", "skip small talk"), add it as a dated line to `03-references/preferences/meeting-notes.md` and say so.
