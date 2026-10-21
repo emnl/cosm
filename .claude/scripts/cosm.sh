@@ -73,7 +73,7 @@ update_apply() { # replace the system files from folder $1 (made by update-fetch
     rm -rf "./${p%/}" && dropped="$dropped $p"
   done < <(manifest_paths MANIFEST)
   cp "$n/MANIFEST" ./MANIFEST && cp "$n/VERSION" ./VERSION || { echo "FAIL MANIFEST/VERSION (files replaced: $count)"; return; }
-  echo "OK replaced $count, now version $(cat VERSION)"; [ -n "$dropped" ] && echo "REMOVED$dropped"
+  count=$((count+2)); echo "OK replaced $count, now version $(cat VERSION)"; [ -n "$dropped" ] && echo "REMOVED$dropped"
   for p in $(grep -o '"[^"]*"' "$n/.obsidian/community-plugins.json" 2>/dev/null | tr -d '"'); do grep -q "\"$p\"" .obsidian/community-plugins.json 2>/dev/null || echo "NEW_PLUGIN $p"; done
 }
 update_cleanup() { # remove the temporary folder update-fetch made, and nothing else
