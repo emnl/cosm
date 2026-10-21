@@ -2,5 +2,6 @@
   "newFileLocation": "folder",
   "newFileFolderPath": "01-inbox",
   "promptDelete": false,
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "attachmentFolderPath": "01-inbox"
 }

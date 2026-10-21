@@ -7,6 +7,8 @@ Takes no argument. `profile.md` and `MAP.md` are already loaded. If `## Me` in `
 
 ## What the vault shows
 
+Finishing an update (runs once after each new version; prints nothing when there was nothing to do): !`bash .claude/scripts/cosm.sh update-finish`
+
 Today: !`date +%Y-%m-%d`
 
 Open tasks due within 3 days, overdue included, from anywhere in the vault:
@@ -24,6 +26,8 @@ Last review: !`bash .claude/scripts/cosm.sh last-review`
 Newest session log and its summary: !`bash .claude/scripts/cosm.sh log-summary`
 
 ## Answer
+
+If finishing an update printed anything, start with one line on what it did (folders moved, settings set), quoting any `FAIL` line as it is. After a `SET` line, add: "Quit Obsidian and open it again to finish." On `CONFLICT`, an item exists under both the old and the new folder name: show both, propose how to combine them (say which file or folder goes where) and move them on ==y==; this is the one case where files are moved by hand during an update. Then run `bash .claude/scripts/cosm.sh update-finish` again.
 
 Keep it to a few lines, in the user's language:
 

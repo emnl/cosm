@@ -1,5 +1,11 @@
 # Changes
 
+## 0.6
+- Updates now reach almost everything: cosm's own settings in Obsidian and the chat are added to yours instead of replacing them, so your own choices stay.
+- Updating from 0.4 or 0.5 works: your folders are renamed to 02-spaces and 03-knowledge for you, with the paths in your map fixed. No fresh install needed.
+- Files and images you paste land in 01-inbox, and /inbox files them.
+- The chat follows cosm's rules where the chat plugin's own instructions differ (moving and renaming files).
+
 ## 0.5
 - Two folders have new names: what you run is in **02-spaces** (was 02-subjects), and people, companies, your preferences and skills are in **03-knowledge** (was 03-references).
 - Already using an earlier version? Install 0.5 fresh instead of updating, and move your notes across: the agent's rules now look for the new folder names.

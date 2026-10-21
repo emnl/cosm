@@ -76,18 +76,59 @@ update_apply() { # replace the system files from folder $1 (made by update-fetch
   count=$((count+2)); echo "OK replaced $count, now version $(cat VERSION)"; [ -n "$dropped" ] && echo "REMOVED$dropped"
   for p in $(grep -o '"[^"]*"' "$n/.obsidian/community-plugins.json" 2>/dev/null | tr -d '"'); do grep -q "\"$p\"" .obsidian/community-plugins.json 2>/dev/null || echo "NEW_PLUGIN $p"; done
 }
+update_settings() { # set cosm's own settings (.claude/scripts/settings.json) inside files the user also changes
+  osascript -l JavaScript .claude/scripts/settings.js "$PWD" 2>&1 | grep -v '^$'
+}
+is_filler() { case "$1" in .gitkeep|.DS_Store) return 0;; esac; return 1; }
+move_folder() { # $1 old, $2 new: move what an earlier version kept in $1 into $2, item by item; a clash is reported, never overwritten
+  local i moved=0
+  [ -d "$1" ] || return 0
+  mkdir -p "$2" || { echo "FAIL could not make $2"; return 0; }
+  while IFS= read -r i; do
+    is_filler "$i" && continue
+    if [ -e "$2/$i" ]; then echo "CONFLICT $1/$i and $2/$i both exist; not moved"; MIGRATE_OK=0; continue; fi
+    if mv "$1/$i" "$2/$i"; then moved=$((moved+1)); else echo "FAIL could not move $1/$i"; MIGRATE_OK=0; fi
+  done < <(ls -A "$1")
+  [ -z "$(ls -A "$1" | while IFS= read -r i; do is_filler "$i" || echo x; done)" ] && rm -f "$1/.gitkeep" "$1/.DS_Store" && rmdir "$1"
+  [ "$moved" -gt 0 ] && { echo "MOVED $moved item(s) from $1 to $2"; MIGRATE_MOVED=1; }
+  return 0
+}
+update_migrate() { # bring a vault from an earlier version's layout to this one; each step checks first, so a second run does nothing
+  local f n=0
+  MIGRATE_MOVED=0
+  # 0.5: 02-subjects -> 02-spaces, 03-references -> 03-knowledge, 04-archive/subjects -> 04-archive/spaces
+  move_folder 04-archive/subjects 04-archive/spaces
+  move_folder 02-subjects 02-spaces
+  move_folder 03-references 03-knowledge
+  if [ "$MIGRATE_MOVED" = 1 ]; then
+    while IFS= read -r f; do
+      sed -i '' -e 's#02-subjects/#02-spaces/#g' -e 's#03-references/#03-knowledge/#g' -e 's#04-archive/subjects#04-archive/spaces#g' "$f" && n=$((n+1))
+    done < <(grep -rl --include='*.md' --exclude-dir=logs -e '02-subjects/' -e '03-references/' -e '04-archive/subjects' MAP.md profile.md 01-inbox 02-spaces 03-knowledge 04-archive 2>/dev/null)
+    [ "$n" -gt 0 ] && echo "FIXED old folder paths in $n page(s)"
+  fi
+  return 0
+}
+update_finish() { # once per version: migrate, then settings; recorded in .cosm-finished when nothing failed
+  [ "$(cat .cosm-finished 2>/dev/null)" = "$(version)" ] && return 0
+  local out; MIGRATE_OK=1
+  update_migrate
+  out=$(update_settings); [ -n "$out" ] && echo "$out"
+  case "$out" in *FAIL*) MIGRATE_OK=0;; esac
+  [ "$MIGRATE_OK" = 1 ] && version > .cosm-finished
+  return 0
+}
 update_cleanup() { # remove the temporary folder update-fetch made, and nothing else
   local t; t=$(printf '%s' "$1" | sed -E 's#^(.*/tmp\.[A-Za-z0-9]+)(/.*)?$#\1#')
   case "$t" in "${TMPDIR%/}"/tmp.*|/tmp/tmp.*|/private/var/folders/*/tmp.*|/var/folders/*/tmp.*) ;; *) echo "FAIL not a temporary folder: $1"; return;; esac
   case "${t##*/}" in tmp.*) rm -rf "$t" && echo "OK cleaned";; *) echo "FAIL not a temporary folder: $1";; esac
 }
 
-case "$1" in
+# In braces and ended by exit: bash reads the whole block before running it, so /update can replace this file mid-run.
+{ case "$1" in
   due) due "$2" ;; recent) recent ;; unmapped) unmapped ;; inbox-count) inbox_count ;; inbox-list) inbox_list ;;
   last-review) last_review ;; newest-log) newest_log ;; log-summary) log_summary ;; pages) pages ;; toolbox) toolbox ;;
   long-pages) long_pages ;; log-headings) log_headings ;; as-of) as_of ;; stale) stale ;; notes-folders) notes_folders ;;
   dup-names) dup_names ;; broken-links) broken_links ;; stray-files) stray_files ;; oversize) oversize ;;
   logs-since-review) logs_since_review ;; open-page) open_page ;; version) version ;; source) source_url ;;
-  update-fetch) update_fetch ;; update-apply) update_apply "$2" ;; update-cleanup) update_cleanup "$2" ;;
-esac
-exit 0
+  update-fetch) update_fetch ;; update-apply) update_apply "$2" ;; update-cleanup) update_cleanup "$2" ;; update-settings) update_settings ;; update-migrate) update_migrate ;; update-finish) update_finish ;;
+esac; exit 0; }

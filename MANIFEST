@@ -6,6 +6,9 @@
 # - AGENTS.md loads every session: keep it short.
 # - The user's own Obsidian choices are not listed: appearance.json (light/dark), community-plugins.json,
 #   Style Settings' data.json (theme flavour). A version that must change one says so in CHANGES.md and asks.
+# - A file the user also changes (Claudian's settings, app.json, plugin settings, settings.local.json) is not listed:
+#   cosm's own keys in it are in .claude/scripts/settings.json, which /update merges in, key by key.
+# - A change to the folder layout gets a step in cosm.sh update_migrate, so earlier vaults update instead of reinstalling.
 # source: https://github.com/emnl/cosm
 AGENTS.md
 CLAUDE.md
@@ -16,7 +19,6 @@ CHANGES.md
 MANIFEST
 README.md
 .claude/settings.json
-.claude/settings.local.json
 .claude/commands/setup.md
 .claude/commands/recall.md
 .claude/commands/inbox.md
@@ -26,16 +28,21 @@ README.md
 .claude/commands/update.md
 .claude/scripts/cosm.sh
 .claude/scripts/open-page.js
+.claude/scripts/settings.js
+.claude/scripts/settings.json
 .claude/skills/email/
 .claude/skills/meeting-notes/
 .claude/skills/tools/
-.obsidian/app.json
 .obsidian/core-plugins.json
 .obsidian/daily-notes.json
 .obsidian/snippets/cosm.css
 .obsidian/themes/Cupertino/
-.obsidian/plugins/homepage/
-.obsidian/plugins/obsidian-hider/
+.obsidian/plugins/homepage/main.js
+.obsidian/plugins/homepage/manifest.json
+.obsidian/plugins/homepage/styles.css
+.obsidian/plugins/obsidian-hider/main.js
+.obsidian/plugins/obsidian-hider/manifest.json
+.obsidian/plugins/obsidian-hider/styles.css
 .obsidian/plugins/obsidian-style-settings/main.js
 .obsidian/plugins/obsidian-style-settings/manifest.json
 .obsidian/plugins/obsidian-style-settings/styles.css

@@ -12,5 +12,7 @@
       ]
     }
   },
-  "enableDualPane": false
+  "enableDualPane": false,
+  "mediaFolder": "01-inbox",
+  "systemPrompt": "Where this vault's AGENTS.md differs from the sections above, AGENTS.md wins."
 }

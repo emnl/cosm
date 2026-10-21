@@ -9,8 +9,9 @@ For whoever works on cosm itself. Kept in `.github/`, which Obsidian ignores, an
    - `cd <scratch vault> && /bin/bash .claude/scripts/cosm.sh <lookup> [arg]` for every lookup, quoting the arguments
    - on an empty vault (nothing printed, exit 0), and on a planted one: names with spaces and an en dash, a dated note name, a link with an alias, a stale *As of*, a long page, a broken link, a stray file, an old and a new log
 3. **Files.** Every line in `MANIFEST` exists (`grep -v '^#' MANIFEST | while read -r f; do [ -e "$f" ] || echo "MISSING $f"; done`). User files (anything the user can change: `appearance.json`, `community-plugins.json`, Style Settings' `data.json`, notes) are never listed.
-4. **Shipped `settings.local.json`** is in git explicitly (`git add -f`); a global git ignore may exclude it. It carries the allow rules and the active-page hook, which a project's `settings.json` can't (Claude Code ignores its allow rules until the folder is trusted, and Claudian doesn't mark it trusted).
-5. **Prompt review.** A changed command, skill or `AGENTS.md` goes through a reviewer before release; a second look at a rewrite goes to the same reviewer, not a fresh one.
+4. **Settings and migrations.** A release copy needs no finishing: `rsync -a --exclude .git ./ <scratch>/ && cd <scratch> && /bin/bash .claude/scripts/cosm.sh update-finish` prints nothing. If it prints `SET`, `.claude/scripts/settings.json` and the shipped file disagree; fix one. A change to the folder layout gets a step in `update_migrate` (check first, so a second run does nothing), tested by updating a copy of a vault on the previous version.
+5. **Shipped `settings.local.json`** is in git explicitly (`git add -f`); a global git ignore may exclude it. It carries the allow rules and the active-page hook, which a project's `settings.json` can't (Claude Code ignores its allow rules until the folder is trusted, and Claudian doesn't mark it trusted).
+6. **Prompt review.** A changed command, skill or `AGENTS.md` goes through a reviewer before release; a second look at a rewrite goes to the same reviewer, not a fresh one.
 
 ## Release
 

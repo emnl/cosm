@@ -1,0 +1,64 @@
+{
+  ".claudian/claudian-settings.json": {
+    "set": {
+      "mediaFolder": "01-inbox",
+      "systemPrompt": "Where this vault's AGENTS.md differs from the sections above, AGENTS.md wins."
+    }
+  },
+  ".obsidian/app.json": {
+    "set": {
+      "newFileLocation": "folder",
+      "newFileFolderPath": "01-inbox",
+      "promptDelete": false,
+      "showInlineTitle": false,
+      "attachmentFolderPath": "01-inbox"
+    }
+  },
+  ".obsidian/plugins/homepage/data.json": {
+    "set": {
+      "homepages.Main Homepage.value": "HOME",
+      "homepages.Main Homepage.kind": "File",
+      "homepages.Main Homepage.openOnStartup": true
+    }
+  },
+  ".obsidian/plugins/obsidian-hider/data.json": {
+    "set": {
+      "hideStatus": true,
+      "hideTabs": true,
+      "hideScroll": true,
+      "hideSidebarButtons": false,
+      "hideTooltips": true,
+      "hideFileNavButtons": true,
+      "hideSearchSuggestions": false,
+      "hideSearchCounts": false,
+      "hideInstructions": true,
+      "hidePropertiesReading": false,
+      "hideVault": true
+    }
+  },
+  ".claude/settings.local.json": {
+    "add": {
+      "permissions.allow": [
+        "Bash(uvx:*)",
+        "Bash(uv run:*)",
+        "Bash(textutil:*)",
+        "Bash(find:*)",
+        "Bash(grep:*)",
+        "Bash(date:*)",
+        "Bash(curl -sL https://github.com/:*)",
+        "Bash(unzip:*)",
+        "Bash(bash .claude/scripts/cosm.sh:*)"
+      ],
+      "hooks.UserPromptSubmit": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash .claude/scripts/cosm.sh open-page"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
