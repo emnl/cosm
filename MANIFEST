@@ -4,6 +4,7 @@
 #   Exception: adapters for one tool (CLAUDE.md, .claude/, .claudian/).
 # - Write "the user" and "the agent", never a name.
 # - AGENTS.md loads every session: keep it short.
+# source: https://github.com/OWNER/cosm
 AGENTS.md
 CLAUDE.md
 HOME.md
@@ -15,6 +16,14 @@ README.md
 .claude/settings.json
 .claude/commands/setup.md
 .claude/commands/recall.md
+.claude/commands/inbox.md
+.claude/commands/log.md
+.claude/commands/reflect.md
+.claude/commands/review.md
+.claude/commands/update.md
+.claude/skills/email/
+.claude/skills/meeting-notes/
+.claude/skills/tools/
 .obsidian/app.json
 .obsidian/appearance.json
 .obsidian/community-plugins.json

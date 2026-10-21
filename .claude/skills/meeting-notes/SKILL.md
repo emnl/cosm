@@ -1,0 +1,46 @@
+---
+name: meeting-notes
+description: File a meeting note, a pasted transcript or a meeting export — keep the user's text, add a summary, update the subject's state page and the people in it. Use when /inbox meets a meeting, or when the user pastes or describes a meeting.
+---
+# Meeting notes
+
+How the user wants it done (read first and follow it over anything below):
+
+!`cat 03-references/preferences/meeting-notes.md 2>/dev/null || echo "No preferences yet."`
+
+## 1. Work out what it is
+
+From the text: the date, who was there, and which subject it belongs to (`MAP.md`, then the subject pages). Ask only what can't be told from the text, in one question with a suggestion: "Acme supply deal, 21 Oct, with Jonas Ek and Sara Lind? `y` · or tell me". A meeting about two subjects goes with the one it mostly decided; the other gets a link.
+
+## 2. Save the note
+
+`02-subjects/<subject>/notes/<YYYY-MM-DD>-<topic>.md`. The user's text stays exactly as written, below a summary the agent adds:
+
+```
+# Acme kickoff, 21 Oct
+
+**With:** [[jonas-ek]], [[sara-lind]] · **Subject:** [[acme-deal]]
+
+## Summary
+- **Decided:** price 84 kr/unit; delivery moved to 17 Nov
+- **Actions:** Jonas — send the contract by 25 Oct · you — confirm volumes by 24 Oct
+- **Open:** who signs on Acme's side
+
+## Notes
+<the user's text, unchanged>
+```
+
+A transcript longer than a few screens is kept whole in the same note; the summary is what makes it usable.
+
+## 3. Carry it onto the pages
+
+- The subject's state page: replace the lines the meeting changed in `## Where it stands` (move *As of* to today), update **In flight:** and `## Open`.
+- A decision that binds later work, or a change whose old value will matter, also gets its own decision note (`AGENTS.md` § How the vault grows).
+- Each person and company there: update their state page with what the meeting showed about them; create the page if it is new, with its line in `MAP.md` if it starts a new folder.
+- The user's own actions: propose them for their list, one block: "Add to your list? 1. Confirm volumes to Acme 📅 2026-10-24 `y` · `1` `2` to pick · `n`". Others' actions stay in the note.
+
+## 4. Report
+
+One line per page touched, then stop: "Saved `acme-deal/notes/2026-10-21-acme-kickoff.md`; updated Acme supply deal (delivery 17 Nov), Jonas Ek; new page Sara Lind."
+
+When the user corrects how a meeting is written up ("always a Decisions heading first", "skip small talk"), add it as a dated line to `03-references/preferences/meeting-notes.md` and say so.
