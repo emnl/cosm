@@ -18,7 +18,7 @@ Ask: "Anything wrong or missing? `y` all fine · or tell me". Fix what they corr
 
 Anything durable from the whole session that isn't on its page yet: a correction or preference (including a way of working the user showed without saying it as a rule), a decision, a date, an unfinished thread (it goes to the subject's `tasks.md` or the user's `todo.md`). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on `y`.
 
-If nothing was learned or missed, say so in one line and go to step 4.
+If nothing was learned or missed, say so in one line.
 
 ## 3. A skill?
 
