@@ -13,7 +13,7 @@ Pages: !`find 02-subjects 03-references -name '*.md' 2>/dev/null`
 
 Toolbox: !`~/.local/bin/uv --version 2>/dev/null || echo not installed`
 
-On a rerun, propose only what isn't listed above, leave filled sections of `profile.md` as they are, and skip step 6 if the toolbox is installed.
+On a rerun, propose only what isn't listed above and never overwrite a page that exists: leave filled sections of `profile.md` as they are, add new To do lines at the end of `todo.md`, and skip step 6 if the toolbox is installed.
 
 ## 1. Start
 
@@ -22,21 +22,21 @@ Say first: "I'll set up your notes in about 3 minutes. With your OK I'll look at
 Then search the available tools for a mail tool and a calendar tool.
 
 - One or both found: go to step 2.
-- None found: say "Connecting your mail and calendar in the settings of the account you signed in with (under Connectors) lets me learn much more on day one. Afterwards, open a new chat (the + above the input) and type /setup again. Carry on without them for now? `y` · `n`". On `y`, go to step 3. On `n`, stop.
+- None found: say "Connecting your mail and calendar in the settings of the account you signed in with (under Connectors) lets me learn much more on day one. Afterwards, start a new chat and type /setup again. Carry on without them for now? `y` · `n`". On `y`, go to step 3. On `n`, stop.
 
 ## 2. Read the last weeks
 
-Ask, naming only the tools found: "I'll look at whom you've written to and about what over the last 3 weeks, and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. `y` · `n`". On `n`, go to step 3.
+Ask, naming only the tools found: "I'll look at whom you've written to, what's waiting for your reply, and about what over the last 3 weeks, and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. `y` · `n`". On `n`, go to step 3.
 
 On `y`, say it takes a minute or two, then read:
-- sent mail of the last 3 weeks: recipients and subject lines only; open a message only to read the user's own signature
-- calendar 3 weeks back and 2 ahead: recurring meetings and who is in them
+- sent mail: recipients and subject lines only; open a message only to read the user's own signature
+- received mail of the last 2 weeks the user hasn't answered: sender and subject line only
+- calendar: recurring meetings and who is in them
 
-Skip anything that looks private (health, family). Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3, one at a time. Then go to step 4.
+Skip anything that looks private (health, family). Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3. Then go to step 4.
 
 ## 3. Without mail and calendar: ask
 
-One at a time:
 1. Your name, role and company?
 2. What are the 2–5 main things you're working on now?
 3. Who are the people and companies you deal with most?
@@ -56,14 +56,14 @@ To do:     1. Reply to Jonas on the delivery date   2. Q4 budget draft by 1 Nov
 Create these pages? y · or tell me what to change
 ```
 
-Language is the one their mail is in, or the one they type in. To do holds up to three things the reading showed the user has to do; leave it out when there are none. After any change, show the block again and ask `y` again.
+Language is the one their mail is in, or the one they type in. To do holds up to three things the user has to do, from unanswered mail and upcoming meetings; leave it out when there are none. After any change, show the block again and ask `y` again.
 
 ## 5. Write
 
 On `y`, write:
 
 - `profile.md`: `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` dated lines: the answer style (`- Short answers; full detail only when I ask (<today>)`), then the two defaults, `- Tables over prose for structured data (default)` and `- One item at a time when there are several to decide (default)`.
-- The user's own subject, `02-subjects/<user>/<user>.md` (`<user>` is their first name, lowercase) (a state page for their own work and admin) and `02-subjects/<user>/todo.md` with the To do lines from the block, each linked to its subject.
+- The user's own subject: `02-subjects/<user>/<user>.md`, a state page for their own work and admin (`<user>`: their first name, lowercase), and `02-subjects/<user>/todo.md` with the To do lines from the block, each linked to its subject.
 - One folder per subject: `02-subjects/<subject>/<subject>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
 - One state page per person and company in `03-references/people/` and `03-references/companies/`, in the same shape.
 - `MAP.md`: one line per new folder.

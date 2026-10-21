@@ -21,7 +21,7 @@ Items waiting in the inbox: !`find 01-inbox -type f -not -name '.*' 2>/dev/null 
 
 Last review: !`cat .cosm-last-review 2>/dev/null || echo never`
 
-Newest session log: !`find 04-archive/logs -name '*.md' 2>/dev/null | sort | tail -1`
+Newest session log: !`find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ '{print $NF "\t" $0}' | sort | tail -1 | cut -f2`
 
 ## Answer
 
