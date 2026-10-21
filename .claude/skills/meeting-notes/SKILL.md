@@ -36,7 +36,7 @@ A transcript longer than a few screens is kept whole in the same note; the summa
 
 - The subject's state page: the lines the meeting changed, **In flight:** and `## Open` (`AGENTS.md` § Page shapes).
 - A decision that binds later work, or a change whose old value will matter, also gets its own decision note (`AGENTS.md` § How the vault grows).
-- Each person and company there: update their state page with what the meeting showed about them; if they are new, create their folder and page (`03-references/<kind>/<name>/<name>.md`), with its line in `MAP.md` if it starts a new folder.
+- Each person and company there: update their state page with what the meeting showed about them; if they are new, create their folder and page (`03-references/<kind>/<name>/<name>.md`), and a `MAP.md` line if it is a new kind.
 - The user's own actions: propose them for their list in one block: "Add to your list? 1. Confirm volumes to Acme [[Acme supply deal]] 📅 2026-10-24 · 2. Book the follow-up [[Acme supply deal]] — ==y== all · ==1== ==2== pick · ==n==". Others' actions stay in the note.
 
 ## 4. Report

@@ -13,7 +13,7 @@ Pages: !`bash .claude/scripts/cosm.sh pages`
 
 Toolbox: !`bash .claude/scripts/cosm.sh toolbox`
 
-On a rerun, propose only what isn't listed above and never overwrite a page that exists: leave filled sections of `profile.md` as they are, add new To do lines at the end of `todo.md`, and skip step 6 if the toolbox is installed.
+On a rerun, open with "I'll look for anything new to add." instead of the opening line below, propose only what isn't listed above and never overwrite a page that exists: leave filled sections of `profile.md` as they are, add new To do lines at the end of `todo.md`, and skip step 6 if the toolbox is installed.
 
 ## 1. Start
 
@@ -26,11 +26,11 @@ Search the available tools for a mail tool and a calendar tool, without a messag
 
 ## 2. Read the last weeks
 
-In the same first message, after the opening line, ask, naming only the tools found: "I'll look at whom you've written to, what's waiting for your reply, and about what over the last 3 weeks, and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. ==y== yes · ==n== no". On ==n==, go to step 3.
+In the same first message, after the opening line, ask, naming only the tools found: "I'll look at the last 3 weeks of your mail (who you write with, about what, and what's waiting for your reply) and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. ==y== yes · ==n== no". On ==n==, go to step 3.
 
 On ==y==, say it takes a minute or two, then read:
 - sent mail: recipients and subject lines only; open a message only to read the user's own signature
-- active threads: threads of the last 3 weeks with a real back-and-forth (the user and others both writing, three messages or more): participants and subject lines only. They are the best source for Subjects and People; the ones waiting on the user feed To do.
+- active threads: threads of the last 3 weeks with a real back-and-forth (the user and others both writing, three messages or more): participants and subject lines only. They are the best source for Subjects and People.
 - calendar: recurring meetings and who is in them
 
 Ask the mail tool for small pages (about 15 threads at a time, headers only where it can), so each answer fits; never save a result to a file to dig through it. Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3. Then go to step 4.
@@ -43,7 +43,7 @@ Ask the mail tool for small pages (about 15 threads at a time, headers only wher
 
 ## 4. Propose
 
-Show the proposal as bold-label lines (never a table or a code block; the chat is narrow), at most 5 subjects, 10 people and 5 companies, the ones that come up most:
+Show the proposal as bold-label lines, at most 5 subjects, 10 people and 5 companies, the ones that come up most:
 
 **You** · Anna Berg, CFO at Nordvik AB
 **Language** · Swedish (as in your mail)
@@ -61,18 +61,18 @@ Language is the one their mail is in, or the one they type in. To do holds up to
 
 On ==y==, write:
 
-- `profile.md`: `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` dated lines: the answer style (`- Short answers; full detail only when I ask (<today>)`), then the two defaults, `- Tables over prose for structured data (default)` and `- One item at a time when there are several to decide (default)`.
+- `profile.md`: `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` these lines: the answer style (`- Short answers; full detail only when I ask (<today>)`), then the two defaults, `- Tables over prose for structured data (default)` and `- One item at a time when there are several to decide (default)`.
 - The user's own subject: `02-subjects/<user>/<user>.md`, a state page for their own work and admin (`<user>`: their first name, as they write it), and `02-subjects/<user>/todo.md` with the To do lines from the block, each linked to its subject.
 - One folder per subject: `02-subjects/<subject>/<subject>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
 - One folder per person and company, `03-references/people/<name>/<name>.md` and `03-references/companies/<name>/<name>.md`, with a state page in the same shape.
-- `MAP.md`: one line per new folder.
+- `MAP.md`: one line per new subject folder.
 - `.cosm-last-review`: today's date, one line, so the first review reminder comes a week from now.
 
-Then say in a few plain lines what was made, by name and what it is for, not by path: "I made your profile, a page for each of your 5 subjects (Acme supply deal, Q4 budget …), pages for 10 people and 5 companies, and your to-do list [[todo]], which is yours to change however you like. I'll keep the pages up to date as we work."
+Then say in a few plain lines what was made: "I made your profile, a page for each of your 5 subjects (Acme supply deal, Q4 budget …), pages for 10 people and 5 companies, and and your to-do list on your own page [[<user>]], which is yours to change however you like."
 
 ## 6. Toolbox
 
-If it isn't installed, ask: "Install the toolbox? It lets me read and make Word, Excel, PowerPoint and PDF files. About 1 minute, nothing outside your user folder. ==y== yes · ==n== no". On ==y==, run `curl -LsSf https://astral.sh/uv/install.sh | sh` and check that `~/.local/bin/uv --version` answers. If it doesn't, say it didn't install, that cosm works without it, and carry on.
+If it isn't installed, offer it as the tools skill says, and carry on whatever the answer.
 
 ## 7. First task
 

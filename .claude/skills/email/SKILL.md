@@ -15,7 +15,7 @@ If no mail tool is found, say how to connect one: the settings of the account th
 Which one the user has is a line in `email.md`; until it is there, ask first (§ Offer once).
 
 - **They archive.** The inbox is their to-do list: a thread in it still needs something; archived means done. Work oldest first, by each thread's last message.
-- **They keep everything.** Never suggest archiving. Work from what is waiting on them: threads from the last 2 weeks, and since the date in `.cosm-last-mail` if it is older, where the newest message isn't from the user; newest first. A thread is handled when the user has replied or says done or skip. At the end of the pass, write today's date to `.cosm-last-mail` (one line).
+- **They keep everything.** Never suggest archiving. Work from what is waiting on them: threads since the last pass (the date in `.cosm-last-mail`) or from the last 2 weeks, whichever reaches further back, where the newest message isn't from the user; newest first. A thread is handled when the user has replied or says done or skip. At the end of the pass, write today's date to `.cosm-last-mail` (one line).
 
 Either way, read a thread from its newest message; don't take its last activity from a search result, which may show only some of its messages.
 
@@ -29,15 +29,15 @@ For each thread, in a few lines:
 
 Wait for the answer before the next thread. Skipped threads stay in the inbox and come once in the recap, not again.
 
-Leave newsletters, notifications and other automated mail out of the one-by-one pass. After every ten threads, a short recap: what left the inbox, what stays and why, what is waiting on others; list the inbox again; and offer the automated mail in one line with a count and its senders: "8 newsletters and notifications (Acme News, LinkedIn …). Archive them all? ==y== yes · ==n== no". A sender seen three times in a session gets a filter or preference line proposed.
+Leave newsletters, notifications and other automated mail out of the one-by-one pass. After every ten threads, a short recap: what was handled and what is waiting on others. If they archive, also what left the inbox, the inbox listed again, and the automated mail offered in one line with a count and its senders: "8 newsletters and notifications (Acme News, LinkedIn …). Archive them all? ==y== yes · ==n== no". A sender seen three times in a session gets a filter or preference line proposed.
 
 ## Drafts
 
-- On ==d==, show the draft text in the chat first, with ==y== create it · or tell me what to change. Change it there until the user says ==y==; only then create one draft in their mail. Their changes are how their style is learned: a change that applies to every mail ("sign off Anna B") becomes a preference line.
+- On ==d==, show the draft text in the chat first, with ==y== create it · or tell me what to change. Change it there until the user says ==y==; only then create one draft in their mail.
 - Make drafts only with a tool that says it creates a draft. A tool called reply, send or forward may send at once: never call one, even when the user says "just send it". Say the draft is waiting in their mail app.
 - Write in the user's language and register for that person; before a reply to someone outside, check what was promised in the thread and on the subject page.
 - Numbers, dates, names and commitments come from the thread or the vault. When one is unknown, leave a marked gap such as `[date]`.
-- Read the draft back after creating it: its recipients, and that it sits in the thread. Never leave two drafts on one thread; a change after creating it replaces the draft.
+- Read the draft back after creating it: its recipients, and that it sits in the thread. Never leave two drafts on one thread; a change after creating it replaces the draft: delete the old one (a draft the agent made isn't a mail under § Never), or ask the user to if the tool can't.
 - Attachments can't be added through the mail tool: write the draft, then list what to attach. An attachment the mail tool can't open: ask the user to save it to `~/Downloads` and read it there.
 
 ## What it learns
@@ -49,7 +49,7 @@ Leave newsletters, notifications and other automated mail out of the one-by-one 
 
 Each of these is offered the first time it applies (`AGENTS.md` § Learning):
 - Before the first pass: "Do you archive mail when it's done, or let your inbox grow? ==1== I archive · ==2== I keep everything"
-- If they archive, when the inbox has more than about 50 threads: "Your inbox has 1,240 threads. Start fresh? ==1== archive everything older than 3 months in one go (it stays searchable) · ==2== work only the last 4 weeks, leave the rest · ==n== go through it all". Explain once, before it: "The inbox is your to-do list: archived means done." Count the inbox before listing it.
+- Count the inbox first. If they archive and it holds more than about 50 threads: "Your inbox has 1,240 threads. Start fresh? ==1== archive everything older than 3 months in one go (it stays searchable) · ==2== work only mail from the last 4 weeks, counted back from each pass · ==n== go through it all". Explain once, before it: "The inbox is your to-do list: archived means done."
 - If they archive, when the user says they sent a reply: "Archive a thread when you say it's sent, from now on? ==y== yes · ==n== no"
 
 ## Never

@@ -5,7 +5,7 @@ description: Write a record of this session into the inbox — what was decided,
 
 Now: !`date '+%Y-%m-%d %H.%M'`
 
-Write one file, `01-inbox/<now> Log – <Topic>.md`, where `<Topic>` is two to six words for what the session was mostly about, written as the user would (`2026-10-21 21.51 Log – Acme pricing.md`). The date, time and ` Log – ` must stay exactly so: they sort the logs and let `/recall` and `/inbox` find them. `/inbox` files it later; `/recall` reads its Summary next time.
+Write one file, `01-inbox/<now> Log – <Topic>.md`, where `<Topic>` is two to six words for what the session was mostly about, written as the user would (`2026-10-21 21.51 Log – Acme pricing.md`). The date, time and ` Log – ` (with an en dash, –) must stay exactly so: `/recall` and `/inbox` find and sort logs by them. `/inbox` files it later; `/recall` reads its Summary next time.
 
 Written from this session only. It records; it doesn't decide anything new. Facts should already be on their pages (`AGENTS.md`, write as you go); if one isn't, write it there now, before the log.
 
