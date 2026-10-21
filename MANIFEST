@@ -25,6 +25,7 @@ README.md
 .claude/commands/review.md
 .claude/commands/update.md
 .claude/scripts/cosm.sh
+.claude/scripts/open-page.js
 .claude/skills/email/
 .claude/skills/meeting-notes/
 .claude/skills/tools/

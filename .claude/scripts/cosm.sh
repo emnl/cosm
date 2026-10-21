@@ -39,7 +39,7 @@ stray_files() {
 }
 oversize() { for f in 03-references/preferences/*.md; do [ "$(wc -c < "$f")" -gt 2000 ] && echo "$f"; done; [ -f profile.md ] && [ "$(wc -c < profile.md)" -gt 1500 ] && echo profile.md; }
 logs_since_review() { local l; l=$(cat .cosm-last-review 2>/dev/null); l=$(date -j -v-7d -f %Y-%m-%d "${l:-2000-01-01}" +%F 2>/dev/null); find 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ -v l="$l" '$NF >= l' | sort; }
-open_page() { local f; f=$(plutil -extract lastOpenFiles.0 raw -o - .obsidian/workspace.json 2>/dev/null); [ -n "$f" ] && echo "The page open in Obsidian right now: [[${f%.md}]] ($f)"; }
+open_page() { local f; f=$(osascript -l JavaScript .claude/scripts/open-page.js "$PWD/.obsidian/workspace.json" 2>/dev/null); [ -n "$f" ] && { n=${f##*/}; echo "The page open in Obsidian right now: [[${n%.md}]] ($f)"; }; }
 version() { cat VERSION 2>/dev/null || echo unknown; }
 source_url() { grep -m1 '^# source:' MANIFEST 2>/dev/null | sed 's/^# source: *//'; }
 
