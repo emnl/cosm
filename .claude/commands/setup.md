@@ -33,7 +33,7 @@ On `y`, say it takes a minute or two, then read:
 - active threads: threads of the last 3 weeks with a real back-and-forth (the user and others both writing, three messages or more): participants and subject lines only. They are the best source for Subjects and People; the ones waiting on the user feed To do.
 - calendar: recurring meetings and who is in them
 
-Skip anything that looks private (health, family). Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3. Then go to step 4.
+Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3. Then go to step 4.
 
 ## 3. Without mail and calendar: ask
 
