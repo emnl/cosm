@@ -51,7 +51,10 @@ body {
 .claudian-message-content table td:first-child,
 .claudian-message-content table th:first-child {
   white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+  width: 1%;
 }
-.claudian-message-content table thead:has(th:empty:first-child + th:empty:last-child) {
+.claudian-message-content table thead:not(:has(th :is(*, *::before))):has(th:first-child:empty) {
   display: none;
 }
