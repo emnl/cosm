@@ -68,6 +68,8 @@ If nothing was found, say "Vault is tidy." in one line.
 
 Read the Decided and Open sections of the logs above. For anything a page doesn't already say, propose writing it there.
 
+Then read the preference files and the same logs, and propose at most one pattern: a preference corrected several times (propose a firmer line, or moving it into its skill), or a procedure done the same way in several sessions (propose making it a skill, the way `/reflect` does).
+
 ## Finish
 
 Write today's date to `.cosm-last-review` (one line), and close with one line: what was done, what was skipped.
