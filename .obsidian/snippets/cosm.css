@@ -22,8 +22,10 @@ body {
   display: none;
 }
 
-/* cosm: answer keys (<kbd>y</kbd>) stand out, in the chat and in notes */
-kbd {
+/* cosm: answer keys (==y==) show as key buttons, in the chat and in notes */
+.claudian-message-content mark,
+.markdown-rendered mark,
+.cm-s-obsidian .cm-highlight {
   display: inline-block;
   min-width: 1.6em;
   padding: 0.05em 0.45em;
@@ -36,7 +38,6 @@ kbd {
   font-weight: 600;
   line-height: 1.5;
   text-align: center;
-  border: none;
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 

@@ -3,7 +3,7 @@ description: Weekly review — what's due, what needs tidying, and what slipped 
 ---
 # /review
 
-Three parts, in order. Each finding is proposed on its own, with the keys that apply; apply it on <kbd>y</kbd>, skip on <kbd>s</kbd>. The inbox is `/inbox`'s, not this command's.
+Three parts, in order. Each finding is proposed on its own, with the keys that apply; apply it on ==y==, skip on ==s==. The inbox is `/inbox`'s, not this command's.
 
 ## What the vault shows
 
@@ -47,7 +47,7 @@ Session logs since the last review:
 
 ## 1. Due
 
-The tasks above, overdue first, each with its subject; the agent's own (`tasks.md`) last, under "Mine:". If `profile.md` says the user keeps a list elsewhere, read it too. For each overdue one of the user's, ask: "<kbd>y</kbd> done · <kbd>n</kbd> drop · or type a new date". For the agent's own, do or check it now if it can, write the outcome on its subject page, and tick it.
+The tasks above, overdue first, each with its subject; the agent's own (`tasks.md`) last, under "Mine:". If `profile.md` says the user keeps a list elsewhere, read it too. For each overdue one of the user's, ask: "==y== done · ==n== drop · or type a new date". For the agent's own, do or check it now if it can, write the outcome on its subject page, and tick it.
 
 ## 2. Tidying
 
@@ -58,8 +58,8 @@ Go through what the lookups found, one finding at a time, with a proposed fix:
 - **As of older than the newest note:** read the note; propose the state lines it should have changed. If the page already says it, propose moving *As of* to the note's date.
 - **Nothing changed in 90 days:** propose moving the subject to `04-archive/subjects/` (never the user's own subject).
 - **Folder inside `notes/`, same name twice, broken link, file that isn't markdown or doesn't belong:** propose the fix (rename, re-link, create the missing page, move to `~/Downloads` or where the user keeps files).
-- **Folder missing from `MAP.md`:** add it (no <kbd>y</kbd> needed) and say so.
-- **Preferences or profile over size:** show a tighter version (duplicates merged, overridden lines dropped) for a <kbd>y</kbd>.
+- **Folder missing from `MAP.md`:** add it (no ==y== needed) and say so.
+- **Preferences or profile over size:** show a tighter version (duplicates merged, overridden lines dropped) for a ==y==.
 - While reading pages for the fixes above: anything kept in two places that has drifted apart (the same date on two pages, the same task in two lists): propose the one place and a link.
 
 If nothing was found, say "Vault is tidy." in one line.

@@ -10,7 +10,7 @@ Your notes, and an AI that reads and writes them. The chat is on the right.
 
 **Weekly:** /review · **New version:** /update
 
-**Keys when it asks:** <kbd>y</kbd> yes · <kbd>n</kbd> no · <kbd>s</kbd> skip · <kbd>1</kbd> <kbd>2</kbd> … pick · <kbd>a</kbd> archive · <kbd>d</kbd> draft
+**Keys when it asks:** ==y== yes · ==n== no · ==s== skip · ==1== ==2== … pick · ==a== archive · ==d== draft
 
 **First time:** type /setup in the chat. It takes about 3 minutes.
 

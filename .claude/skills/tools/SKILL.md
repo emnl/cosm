@@ -10,7 +10,7 @@ What this Mac has, and the right tool for each file type.
 
 uv: !`bash .claude/scripts/cosm.sh toolbox`
 
-Without uv, only the "No uv" column under Reading works and nothing under Making does; offer the install: "Install the toolbox? It lets me read and make Word, Excel, PowerPoint and PDF files. About 1 minute, nothing outside your user folder. <kbd>y</kbd> yes · <kbd>n</kbd> no", then run `curl -LsSf https://astral.sh/uv/install.sh | sh`. If `uv` is not on the path afterwards, call it as `~/.local/bin/uv`.
+Without uv, only the "No uv" column under Reading works and nothing under Making does; offer the install: "Install the toolbox? It lets me read and make Word, Excel, PowerPoint and PDF files. About 1 minute, nothing outside your user folder. ==y== yes · ==n== no", then run `curl -LsSf https://astral.sh/uv/install.sh | sh`. If `uv` is not on the path afterwards, call it as `~/.local/bin/uv`.
 
 Every command below runs as `uv run -q --no-project --python 3.12 --with <package> python -c "<code>"` (or `uvx … ` where shown). Write longer code to a file in a new `mktemp -d` folder and run it with `python -I` (never from `~/Downloads`, where a stray file could be imported).
 

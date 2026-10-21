@@ -19,10 +19,10 @@ Work out what it is, then:
 | A note, an idea, a fact | put it where it belongs: a line on a state page, or a dated note in the subject's `notes/` when it is longer than a line or two. The user's words are kept as written |
 | A clipped web page | a dated note in the subject it is for, with its link at the top (from its `source:` line) and any frontmatter dropped |
 | Something to do | propose it for the user's list, linked to its subject |
-| A file that isn't text (PDF, Word, Excel, image, audio) | read it if it can be read (tools skill; audio can't, so say so). A meeting transcript then goes through the meeting-notes skill. Anything else: a short note on the right page saying what it is, what matters in it and where the file went. Suggest where the file should live outside the vault (the user's usual file storage, or `~/Downloads` if it is only scratch) and move it there on <kbd>y</kbd>; on <kbd>n</kbd> it stays and is listed at the end. Convert it into a markdown note only if the user asks, on <kbd>y</kbd>. A `.txt` file is treated as a note |
-| Nothing fits | ask once, with a suggestion: "Looks like notes from the Q4 budget meeting. File under Q4 budget? <kbd>y</kbd> yes · or tell me" |
+| A file that isn't text (PDF, Word, Excel, image, audio) | read it if it can be read (tools skill; audio can't, so say so). A meeting transcript then goes through the meeting-notes skill. Anything else: a short note on the right page saying what it is, what matters in it and where the file went. Suggest where the file should live outside the vault (the user's usual file storage, or `~/Downloads` if it is only scratch) and move it there on ==y==; on ==n== it stays and is listed at the end. Convert it into a markdown note only if the user asks, on ==y==. A `.txt` file is treated as a note |
+| Nothing fits | ask once, with a suggestion: "Looks like notes from the Q4 budget meeting. File under Q4 budget? ==y== yes · or tell me" |
 
-Filing moves the item's file out of `01-inbox/`, renamed to the vault's naming; that needs no <kbd>y</kbd>. When an item's content now lives on pages and its file is left over, keep a list; at the end, ask once: "Delete the 3 inbox notes now on their pages? <kbd>y</kbd> yes · <kbd>n</kbd> no".
+Filing moves the item's file out of `01-inbox/`, renamed to the vault's naming; that needs no ==y==. When an item's content now lives on pages and its file is left over, keep a list; at the end, ask once: "Delete the 3 inbox notes now on their pages? ==y== yes · ==n== no".
 
 ## After each item
 
