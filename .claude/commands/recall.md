@@ -31,7 +31,7 @@ Keep it to a few lines, in the user's language:
 2. **Last worked on:** the recently changed pages grouped by subject (a page in `02-subjects/acme-deal/` belongs to Acme deal; a reference page goes with the subject it links to, or stands alone). If there is a newest session log, read only its summary at the top and add one line from it.
 3. **Map:** add any folder listed as not yet in `MAP.md`, with a few words, and say so in one line.
 4. **Inbox:** if items are waiting, one line: "3 items in the inbox. /inbox?"
-5. **Review:** if the last review is "never" and the vault has subjects, or more than 7 days old, one line: "Last review 12 days ago. /review?"
+5. **Review:** if the last review was more than 7 days ago, one line: "Last review 12 days ago. /review?"
 6. Ask which subject to pick up, as numbered options, plus "something else".
 
 When the user picks a subject, read its state page (and `tasks.md` if there is one) and say where it stands and what is open, in a few lines. Then wait for what they want to do.

@@ -67,6 +67,7 @@ On `y`, write:
 - One folder per subject: `02-subjects/<subject>/<subject>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
 - One state page per person and company in `03-references/people/` and `03-references/companies/`, in the same shape.
 - `MAP.md`: one line per new folder.
+- `.cosm-last-review`: today's date, one line, so the first review reminder comes a week from now.
 
 Then say in a few lines what was written, and that `todo.md` is theirs to change however they like.
 
