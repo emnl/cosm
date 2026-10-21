@@ -43,17 +43,15 @@ Never copy mail text. Whatever the reading doesn't give (often name and role), a
 
 ## 4. Propose
 
-Show one short table, at most 5 subjects, 10 people and 5 companies, the ones that come up most, as a markdown table (never a code block):
+Show the proposal as bold-label lines (never a table or a code block; the chat is narrow), at most 5 subjects, 10 people and 5 companies, the ones that come up most:
 
-| | |
-|---|---|
-| **You** | Anna Berg, CFO at Nordvik AB |
-| **Language** | Swedish (as in your mail) |
-| **Answers** | short (or say "full") |
-| **Subjects** | Acme supply deal · Q4 budget · Hiring two developers |
-| **People** | Jonas Ek (Acme) · Sara Lind (your team) · Per Ahl (auditor) |
-| **Companies** | Acme AB · Lind & Co |
-| **To do** | Reply to Jonas on the delivery date · Q4 budget draft by 1 Nov |
+**You** · Anna Berg, CFO at Nordvik AB
+**Language** · Swedish (as in your mail)
+**Answers** · short (or say "full")
+**Subjects** · Acme supply deal · Q4 budget · Hiring two developers
+**People** · Jonas Ek (Acme) · Sara Lind (your team) · Per Ahl (auditor)
+**Companies** · Acme AB · Lind & Co
+**To do** · Reply to Jonas on the delivery date · Q4 budget draft by 1 Nov
 
 Then one line: "I'll make a page for each subject, person and company, and your to-do list, and keep them up to date as we work. ==y== yes · or tell me what to change".
 

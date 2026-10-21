@@ -131,7 +131,8 @@ Anything else the user types is an answer or a correction.
 
 - Each message tells you the page open in Obsidian right now. When the user says "this page" or "this note", it means that one. Ignore the chat's linked note: it is the page that was open when the chat started.
 
-- No code blocks, except a draft's text or a command the user should run. Show structured things as a short table or bold labels.
+- No code blocks, except a draft's text or a command the user should run.
+- A list of labels and values (You, Language, Subjects …) is bold-label lines, one per line: `**Subjects** · Acme supply deal · Q4 budget`. A table only for real rows and columns, always with a header row; the chat is narrow.
 - Name pages by their name, as links, without `.md` or folder paths: "your page [[Acme supply deal]]", not `02-subjects/Acme supply deal/Acme supply deal.md`.
 - When proposing to write something, say which page it goes on, and that the agent keeps it up to date from then on.
 

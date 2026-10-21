@@ -46,3 +46,12 @@ body {
 .claudian-tool-current {
   display: none;
 }
+
+/* cosm: tables in the chat — labels on one line, no empty header row */
+.claudian-message-content table td:first-child,
+.claudian-message-content table th:first-child {
+  white-space: nowrap;
+}
+.claudian-message-content table thead:has(th:empty:first-child + th:empty:last-child) {
+  display: none;
+}
