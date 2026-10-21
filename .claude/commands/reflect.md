@@ -11,12 +11,13 @@ List, in a few lines, what this session already wrote as learning:
 - preference lines (which file, the line)
 - profile lines proposed or written
 - facts written to pages that changed how a space stands
+- fix lines written to `03-knowledge/fixes/`, and rows written to gran
 
 Ask: "Anything wrong or missing? ==y== all fine · or tell me". Fix what they correct at once, in the same files.
 
 ## 2. Anything not yet written
 
-Anything durable from the whole session that isn't on its page yet: a correction or preference (including a way of working the user showed without saying it as a rule), a decision, a date, an unfinished thread (it goes to the space's `tasks.md` or the user's `todo.md`). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on ==y==.
+Anything durable from the whole session that isn't on its page yet: a correction or preference (including a way of working the user showed without saying it as a rule), a decision, a date, an unfinished thread (it goes to the space's `tasks.md` or the user's `todo.md`), a failure the agent got past without writing its fix, rows or figures that fit gran but weren't offered, and `tmp_` tables this session made (keep: rename and describe; or drop). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on ==y==.
 
 If nothing was learned or missed, say so in one line.
 

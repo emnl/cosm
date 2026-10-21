@@ -1,5 +1,12 @@
 # Changes
 
+## 0.7
+- The agent finds things in your notes by search, and understands word forms in your language ("fakturorna" finds "faktura") once the toolbox is installed.
+- When you write a message, the agent is handed the few pages that clearly bear on it, each once per chat, so it starts from your notes instead of guessing. Nothing is attached when nothing fits.
+- gran: tables for anything that would otherwise be a spreadsheet (expenses, balances, lists). The agent keeps them, adds them up with real arithmetic, and loads files straight in. A copy of each table sits in `.cosm/gran/`.
+- When a tool fails and the agent finds a way round it, it writes the fix to `03-knowledge/fixes/`, and is reminded of it the next time the same thing fails.
+- Search and copies run in the background, so you never wait for them.
+
 ## 0.6.3
 - The help page says where pasted images and files go, and the README says what an update does to your folders and settings.
 

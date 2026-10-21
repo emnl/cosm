@@ -6,7 +6,7 @@
 set -u
 REPO=$(cd "$(dirname "$0")/.." && pwd)
 T=$(mktemp -d)
-LOOKUPS="due recent unmapped inbox-count inbox-list last-review newest-log log-summary pages long-pages log-headings as-of stale notes-folders dup-names broken-links stray-files oversize logs-since-review version source"
+LOOKUPS="due recent unmapped inbox-count inbox-list last-review newest-log log-summary pages long-pages log-headings as-of stale notes-folders dup-names broken-links stray-files oversize logs-since-review version source fixes gran-list"
 
 run_all() {
   for l in $LOOKUPS; do

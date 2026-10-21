@@ -54,6 +54,65 @@
           "hooks": [
             {
               "type": "command",
+              "command": "bash .claude/scripts/cosm.sh prompt-context"
+            }
+          ]
+        }
+      ],
+      "hooks.PostToolUse": [
+        {
+          "matcher": "Read",
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash .claude/scripts/cosm.sh mark-read"
+            }
+          ]
+        }
+      ],
+      "hooks.PostToolUseFailure": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash .claude/scripts/cosm.sh error-context"
+            }
+          ]
+        }
+      ],
+      "hooks.SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash .claude/scripts/cosm.sh session-start"
+            },
+            {
+              "type": "command",
+              "command": "bash .claude/scripts/cosm.sh index-sync",
+              "async": true
+            }
+          ]
+        }
+      ],
+      "hooks.Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "bash .claude/scripts/cosm.sh index-sync",
+              "async": true
+            }
+          ]
+        }
+      ]
+    },
+    "drop": {
+      "hooks.UserPromptSubmit": [
+        {
+          "hooks": [
+            {
+              "type": "command",
               "command": "bash .claude/scripts/cosm.sh open-page"
             }
           ]

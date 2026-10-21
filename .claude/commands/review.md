@@ -39,7 +39,7 @@ Folders not yet in `MAP.md`:
 Files that aren't markdown, or don't belong at the root:
 !`bash .claude/scripts/cosm.sh stray-files`
 
-Preferences and profile over their size:
+Preferences, fixes and profile over their size:
 !`bash .claude/scripts/cosm.sh oversize`
 
 Session logs since the last review:
@@ -59,7 +59,7 @@ Go through what the lookups found, one finding at a time, with a proposed fix:
 - **Nothing changed in 90 days:** propose moving the space to `04-archive/spaces/` (never the user's own space).
 - **Folder inside `notes/`, same name twice, broken link, file that isn't markdown or doesn't belong:** propose the fix (rename, re-link, create the missing page, move to `~/Downloads` or where the user keeps files).
 - **Folder missing from `MAP.md`:** add it (no ==y== needed) and say so.
-- **Preferences or profile over size:** show a tighter version (duplicates merged, overridden lines dropped) for a ==y==.
+- **Preferences, fixes or profile over size:** show a tighter version (duplicates merged, overridden lines dropped) for a ==y==.
 - While reading pages for the fixes above: anything kept in two places that has drifted apart (the same date on two pages, the same task in two lists): propose the one place and a link.
 
 If nothing was found, say "Vault is tidy." in one line.

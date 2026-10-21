@@ -8,4 +8,5 @@ What is in this vault, folder by folder. The agent keeps it current.
 - 03-knowledge/companies/ — companies you deal with
 - 03-knowledge/skills/ — skills you've made (each listed below it)
 - 03-knowledge/preferences/ — how you want each kind of work done (each listed below it)
+- 03-knowledge/fixes/ — what works when a tool failed (each listed below it)
 - 04-archive/ — finished spaces and session logs

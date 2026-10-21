@@ -8,6 +8,10 @@ How the user wants it done, from `03-knowledge/preferences/email.md` (if its tex
 
 !`cat 03-knowledge/preferences/email.md 2>/dev/null || echo "No preferences yet."`
 
+Known fixes for the mail tools, from `03-knowledge/fixes/mail.md` (empty when there are none):
+
+!`bash .claude/scripts/cosm.sh fixes mail`
+
 If no mail tool is found, say how to connect one: the settings of the account they signed in with, under Connectors, then a new chat.
 
 ## Two ways of working

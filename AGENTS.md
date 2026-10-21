@@ -30,15 +30,20 @@ Direct: lead with the answer, no filler or praise, say plainly when something is
 | `02-spaces/<user>/todo.md` | what the user will do: their own list (`<user>` is the space `/setup` makes for them, named with their first name) |
 | `03-knowledge/<kind>/<name>/` | what the user knows about a person, company or other thing: state page `<name>.md`, `notes/` when needed. `people/` and `companies/` to start; for anything else propose a new kind (`things/`, `places/`) on ==y== |
 | `03-knowledge/preferences/<name>.md` | how the user wants one kind of work done |
+| `03-knowledge/fixes/<tool>.md` | what works where a tool or file type failed (§ Learning) |
+| gran (`.cosm/gran.db`) | the user's tables: rows that would otherwise be a spreadsheet (the gran skill) |
 | `03-knowledge/skills/<name>/` | skills the user made: `SKILL.md` and its files. Not in `MANIFEST`, so updates leave them alone |
 | `04-archive/` | `spaces/` (finished, same layout), `logs/<YYYY-MM>/` (from `/log`, never changed after filing) |
 | `profile.md` | who the user is, how they work in general (propose, write on ==y==) |
 
-Root files: `MAP.md`, `profile.md`, `.cosm-last-review` (the date of the last `/review`, or of `/setup`), `.cosm-finished` (the version whose update steps have run), `.cosm-last-mail` (the date of the last mail pass, for users who keep their inbox), and the system files listed in `MANIFEST`, plus the `.trash/` folder. The agent puts nothing else there.
+Root files: `MAP.md`, `profile.md`, `.cosm-last-review` (the date of the last `/review`, or of `/setup`), `.cosm-finished` (the version whose update steps have run), `.cosm-last-mail` (the date of the last mail pass, for users who keep their inbox), `.cosm/` (gran's database and a CSV copy of each table), and the system files listed in `MANIFEST`, plus the `.trash/` folder. The agent puts nothing else there.
 
 ## Reading and writing
 
 - **Read before answering.** When a space, person or company comes up, read its page first (`MAP.md` shows where). Say nothing about a file, page, mail or past event not read this session; check it, or say it is unverified.
+- **Search before saying it isn't there:** `bash .claude/scripts/cosm.sh search <words>` (pages), `search-logs <words>` (logs); try other words before concluding.
+- **Rows go to gran.** Rows that would otherwise be a spreadsheet (expenses, balances, figures by date, a list of people or cases) are kept in gran, not in a page table. A figure that fits an existing table turns up in other work: offer it in one line. The gran skill says how.
+- **Count in gran scratch.** Adding up, comparing or matching more than about 20 rows (a statement, two lists, a file against a table) goes through a `tmp_` table: a script turns the file into CSV, `gran-import` loads it, SQL does the arithmetic, and only the answer comes back. Never by eye or mental arithmetic, and never with the rows pasted into the chat: that is exact, keeps the chat short, and the working set survives the session. Say so in one line.
 - **Don't ask where something goes:** pick the best-fitting page; ask only when nothing fits, once, with a suggestion.
 - **Write as you go.** When something durable comes up (a decision, a date, a number, a name, a commitment, a correction), write it to its page right then and say so in one line. Nothing waits for the end of the session.
 - **What goes on a page:** what was decided, not what was discussed. Status changes, decisions with their reason, numbers, names, dates, commitments. Leave out background and passing thoughts.
@@ -90,7 +95,7 @@ Tasks, one line each, with a date when there is one: `- [ ] Send Acme the revise
 
 ### MAP.md
 
-Folders, not files, two levels deep, each with a few words. A top-level or kind folder has its own line (`- 02-spaces/ — what you run`); each folder inside it goes indented below, by name only: `  - Acme supply deal/ — signing Nov`. When the agent creates or archives a space, or adds a folder at that depth, it updates `MAP.md` in the same step. Skills in `03-knowledge/skills/` and files in `03-knowledge/preferences/` are listed one by one the same way, indented below their folder, each with a few words on when it applies (`  - email.md — how to handle mail`). `04-archive/` is not listed in detail; search it when a page isn't found elsewhere.
+Folders, not files, two levels deep, each with a few words. A top-level or kind folder has its own line (`- 02-spaces/ — what you run`); each folder inside it goes indented below, by name only: `  - Acme supply deal/ — signing Nov`. When the agent creates or archives a space, or adds a folder at that depth, it updates `MAP.md` in the same step. Skills in `03-knowledge/skills/` and files in `03-knowledge/preferences/` and `03-knowledge/fixes/` are listed one by one the same way, indented below their folder, each with a few words on when it applies (`  - email.md — how to handle mail`). `04-archive/` is not listed in detail; search it when a page isn't found elsewhere.
 
 ### Archive
 
@@ -102,7 +107,8 @@ When a space is done, propose moving its folder to `04-archive/spaces/`; move it
 - A preference or profile line is one dated line: `- Archive newsletters from X without showing them (2026-10-21)`. A line `/setup` wrote as a starting point ends `(default)` instead of a date; the user may delete it. Profile lines go under `## How I like to work`.
 - A habit cosm suggests (a skill lists them under "Offer once") is offered the first time it applies, when its preferences file has no line about it: one question, then the user's answer becomes a dated preference line, followed from then on.
 - A procedure done the same way a second time is a skill candidate: `/reflect` proposes it.
-- Size: about 2,000 characters per preferences file and 1,500 for `profile.md`. Past that, `/review` proposes a tighter version (duplicates merged, overridden lines dropped).
+- **Write every fix.** When a tool or file type fails in a way the next session would hit again (not a typo or a wrong guess) and another way works, write the fix before moving on. One dated line in `03-knowledge/fixes/<tool>.md`: `pdf`, `word`, `excel`, `powerpoint`, `web`, `uv` or `mail` (the files the skills load), otherwise the tool's name (`obsidian.md`), saying what failed and what works: `- Moving a file with spaces in its name fails unquoted: quote the path (2026-10-22)`. A new file gets its line in `MAP.md` in the same step.
+- Size: about 2,000 characters per preferences or fixes file and 1,500 for `profile.md`. Past that, `/review` proposes a tighter version (duplicates merged, overridden lines dropped).
 
 ## System files
 
@@ -131,7 +137,7 @@ Anything else the user types is an answer or a correction.
 
 ## Downloads
 
-Downloads is the exchange point: when the user says a file is there, look first, newest first; files made for the user go in `~/Downloads`, with the name said. No document other than markdown is kept in the vault. When a file is worth keeping, suggest where the user keeps files, and move it on ==y==.
+Downloads is the exchange point: when the user says a file is there, look first, newest first; files made for the user go in `~/Downloads`, with the name said. No document other than markdown is kept in the vault, apart from gran's `.cosm/`. When a file is worth keeping, suggest where the user keeps files, and move it on ==y==.
 
 ## Safety
 
