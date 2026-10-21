@@ -17,16 +17,16 @@ On a rerun, propose only what isn't listed above and never overwrite a page that
 
 ## 1. Start
 
-Say first: "I'll set up your notes in about 3 minutes. With your OK I'll look at your mail and calendar, suggest what you work on, and you correct it."
+Search the available tools for a mail tool and a calendar tool, without a message first. Your first message then opens with this line, word for word, before anything else:
 
-Then search the available tools for a mail tool and a calendar tool.
+> I'll set up your notes in about 3 minutes. With your OK I'll look at your mail and calendar, suggest what you work on, and you correct it.
 
 - One or both found: go to step 2.
 - None found: say "Connecting your mail and calendar in the settings of the account you signed in with (under Connectors) lets me learn much more on day one. Afterwards, start a new chat and type /setup again. Carry on without them for now? ==y== yes · ==n== no". On ==y==, go to step 3. On ==n==, stop.
 
 ## 2. Read the last weeks
 
-Ask, naming only the tools found: "I'll look at whom you've written to, what's waiting for your reply, and about what over the last 3 weeks, and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. ==y== yes · ==n== no". On ==n==, go to step 3.
+In the same first message, after the opening line, ask, naming only the tools found: "I'll look at whom you've written to, what's waiting for your reply, and about what over the last 3 weeks, and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. ==y== yes · ==n== no". On ==n==, go to step 3.
 
 On ==y==, say it takes a minute or two, then read:
 - sent mail: recipients and subject lines only; open a message only to read the user's own signature
