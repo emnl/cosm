@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uvx:*)",
+      "Bash(uv run:*)",
+      "Bash(textutil:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(date:*)",
+      "Bash(curl -sL https://github.com/:*)",
+      "Bash(unzip:*)",
+      "Bash(bash .claude/scripts/cosm.sh:*)"
+    ]
+  }
+}
