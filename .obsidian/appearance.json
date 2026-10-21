@@ -1,7 +1,7 @@
 {
   "showRibbon": false,
-  "cssTheme": "Catppuccin",
-  "theme": "moonstone",
+  "cssTheme": "Cupertino",
+  "theme": "system",
   "enabledCssSnippets": [
     "cosm"
   ]
