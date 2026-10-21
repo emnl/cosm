@@ -30,7 +30,7 @@ Ask, naming only the tools found: "I'll look at whom you've written to, what's w
 
 On `y`, say it takes a minute or two, then read:
 - sent mail: recipients and subject lines only; open a message only to read the user's own signature
-- received mail of the last 2 weeks the user hasn't answered: sender and subject line only
+- active threads: threads of the last 3 weeks with a real back-and-forth (the user and others both writing, three messages or more): participants and subject lines only. They are the best source for Subjects and People; the ones waiting on the user feed To do.
 - calendar: recurring meetings and who is in them
 
 Skip anything that looks private (health, family). Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3. Then go to step 4.
@@ -56,7 +56,7 @@ To do:     1. Reply to Jonas on the delivery date   2. Q4 budget draft by 1 Nov
 Create these pages? y · or tell me what to change
 ```
 
-Language is the one their mail is in, or the one they type in. To do holds up to three things the user has to do, from unanswered mail and upcoming meetings; leave it out when there are none. After any change, show the block again and ask `y` again.
+Language is the one their mail is in, or the one they type in. To do holds up to three things the user has to do, from active threads waiting on them and upcoming meetings; leave it out when there are none. After any change, show the block again and ask `y` again.
 
 ## 5. Write
 
