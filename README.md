@@ -24,4 +24,4 @@ The start page in cosm lists the commands. In short: `/recall` to pick up where 
 
 ## Your files
 
-Everything you write, and everything cosm writes for you, stays in this folder. `/update` brings new versions of cosm's own files and never touches your notes.
+Everything you write, and everything cosm writes for you, stays in this folder. `/update` brings new versions of cosm's own files. Your notes stay as they are; if a new version renames a folder, it moves them for you. Your own settings are kept.

@@ -1,5 +1,8 @@
 # Changes
 
+## 0.6.3
+- The help page says where pasted images and files go, and the README says what an update does to your folders and settings.
+
 ## 0.6.2
 - A cleaner chat: the right sidebar holds only the chat, pinned; under an answer there's just copy; the line above it reads "Worked 4s · 325 tokens", small and faint; your own messages sit in a soft box.
 - The stale note chip under the chat box is gone.

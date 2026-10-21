@@ -5,6 +5,7 @@ You can just type. The AI tidies up when it files a note. These few things are a
 | To | Do |
 |---|---|
 | Make a new note | ⌘N (it lands in `01-inbox`) |
+| Paste an image or drop a file | it lands in `01-inbox`; `/inbox` files it |
 | Open any page | ⌘O, then type part of its name |
 | Search everything | ⌘⇧F |
 | A heading | start the line with `# ` (or `## ` for a smaller one) |
