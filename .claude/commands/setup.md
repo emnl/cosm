@@ -3,65 +3,77 @@ description: First-time setup — learns who you are and what you work on, and w
 ---
 # /setup
 
-Get a new vault to useful in a few minutes. Propose rather than interview: read what can be read, ask only what can't. Ask one thing at a time and wait for the answer. Nothing is written before the user's `y`. Running it again later adds what is new; it never overwrites a page that exists.
+Get a new vault to useful in about three minutes. Propose rather than interview: read what can be read, ask only what can't, one question at a time. Nothing is written before the user's `y`.
 
-## 1. Mail and calendar
+## What the vault already holds
 
-Search the available tools for a mail tool and a calendar tool (they can connect a moment after the session starts, so search rather than read the first tool list).
+Today: !`date +%Y-%m-%d`
 
-- Both or one found: say which, and go to step 2.
-- None found: say that cosm works without them, and that connecting mail and calendar in the AI app's settings (connectors) lets it learn much more on day one. Ask: carry on without (`y`), or stop and connect first (`n`)? Without them, go to step 4.
+Pages: !`find 02-subjects 03-references -name '*.md' 2>/dev/null`
+
+Toolbox: !`~/.local/bin/uv --version 2>/dev/null || echo not installed`
+
+On a rerun, propose only what isn't listed above, leave filled sections of `profile.md` as they are, and skip step 6 if the toolbox is installed.
+
+## 1. Start
+
+Say first: "I'll set up your notes in about 3 minutes. With your OK I'll look at your mail and calendar, suggest what you work on, and you correct it."
+
+Then search the available tools for a mail tool and a calendar tool.
+
+- One or both found: go to step 2.
+- None found: say "Connecting your mail and calendar in the settings of the account you signed in with (under Connectors) lets me learn much more on day one. Afterwards, open a new chat (the + above the input) and type /setup again. Carry on without them for now? `y` · `n`". On `y`, go to step 3. On `n`, stop.
 
 ## 2. Read the last weeks
 
-With the user's go ("I'll look through the last 3 weeks of your sent mail and calendar to suggest what you work on. Nothing is saved without your yes. `y`/`n`"), read:
+Ask, naming only the tools found: "I'll look at whom you've written to and about what over the last 3 weeks, and at your calendar 3 weeks back and 2 ahead. Your mail stays where it is: I keep only names and topics, and nothing is saved without your yes. `y` · `n`". On `n`, go to step 3.
 
-- sent mail of the last 3 weeks: who the user writes to most, the recurring subjects
-- calendar of the last 3 weeks and the next 2: recurring meetings, who is in them
-- the user's own signature: name, role, company
+On `y`, say it takes a minute or two, then read:
+- sent mail of the last 3 weeks: recipients and subject lines only; open a message only to read the user's own signature
+- calendar 3 weeks back and 2 ahead: recurring meetings and who is in them
 
-Never copy mail text. Keep only names, a few words per subject, and who is involved.
+Skip anything that looks private (health, family). Never copy mail text. Whatever the reading doesn't give (often name and role), ask with the questions in step 3, one at a time. Then go to step 4.
 
-## 3. Propose
-
-Show one short proposal and let the user correct it in one go:
-
-```
-You:       Anna Berg, CFO at Acme AB
-Subjects:  1. Acme supply deal   2. Q4 budget   3. Hiring two developers
-People:    Jonas Ek (Acme), Sara Lind (your team), Per Ahl (auditor)
-Companies: Acme AB, Lind & Co
-Right? y · or tell me what to change
-```
-
-Take their changes, show the result once more if it changed much, then go to step 5.
-
-## 4. Without mail and calendar: ask
+## 3. Without mail and calendar: ask
 
 One at a time:
 1. Your name, role and company?
 2. What are the 2–5 main things you're working on now?
 3. Who are the people and companies you deal with most?
 
-## 5. Language and answers
+## 4. Propose
 
-Ask: which language to answer in (offer the one their mail is in), and short answers or full ones? (`1` short · `2` full).
+Show one block, at most 5 subjects, 10 people and 5 companies, the ones that come up most:
 
-## 6. Document reader (optional)
+```
+You:       Anna Berg, CFO at Nordvik AB
+Language:  Swedish (as in your mail)
+Answers:   short — or say "full"
+Subjects:  1. Acme supply deal   2. Q4 budget   3. Hiring two developers
+People:    Jonas Ek (Acme), Sara Lind (your team), Per Ahl (auditor)
+Companies: Acme AB, Lind & Co
+To do:     1. Reply to Jonas on the delivery date   2. Q4 budget draft by 1 Nov
+Create these pages? y · or tell me what to change
+```
 
-Ask once: "Install the document reader? It lets me read Word, Excel, PowerPoint and PDF files and web pages. About 1 minute, nothing outside your user folder. `y`/`n`". On `y`, run `curl -LsSf https://astral.sh/uv/install.sh | sh` and check that `uvx --version` answers. On `n`, carry on; it can be installed later.
+Language is the one their mail is in, or the one they type in. To do holds up to three things the reading showed the user has to do; leave it out when there are none. After any change, show the block again and ask `y` again.
 
-## 7. Write
+## 5. Write
 
-On the user's `y` to the final proposal, write:
+On `y`, write:
 
-- `profile.md`: fill in `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` one dated line for their answer style, e.g. `- Short answers; full detail only when I ask (2026-10-21)`.
-- One folder per subject: `02-subjects/<subject>/<subject>.md` in the state page shape from `AGENTS.md`, with what is known in `## Where it stands` (*As of* today) and anything unclear under `## Open`. No `tasks.md` or `notes/` yet; they come with their first item.
-- One page per person and company in `03-references/people/` and `03-references/companies/`: heading, one line on who they are and how the user knows them, links to their subjects.
-- `MAP.md`: one line per new subject folder.
+- `profile.md`: `## Me` (name, role, company, city if known), `## Language`, and under `## How I like to work` dated lines: the answer style (`- Short answers; full detail only when I ask (<today>)`), then the two defaults, `- Tables over prose for structured data (default)` and `- One item at a time when there are several to decide (default)`.
+- The user's own subject, `02-subjects/<user>/<user>.md` (`<user>` is their first name, lowercase) (a state page for their own work and admin) and `02-subjects/<user>/todo.md` with the To do lines from the block, each linked to its subject.
+- One folder per subject: `02-subjects/<subject>/<subject>.md`, a state page in the shape from `AGENTS.md`, with what the reading showed; `## Open` only for open items it showed.
+- One state page per person and company in `03-references/people/` and `03-references/companies/`, in the same shape.
+- `MAP.md`: one line per new folder.
 
-Use the naming and link rules in `AGENTS.md`. Then say in a few lines what was written.
+Then say in a few lines what was written, and that `todo.md` is theirs to change however they like.
 
-## 8. First task
+## 6. Toolbox
 
-End on something real, not a summary. With a mail tool: "Want me to go through your inbox now? `y`/`n`". Without: "Drop a note or a meeting write-up in `01-inbox/` and say /inbox, or ask me anything about your subjects."
+If it isn't installed, ask: "Install the toolbox? It lets me read and make Word, Excel, PowerPoint and PDF files. About 1 minute, nothing outside your user folder. `y` · `n`". On `y`, run `curl -LsSf https://astral.sh/uv/install.sh | sh` and check that `~/.local/bin/uv --version` answers. If it doesn't, say it didn't install, that cosm works without it, and carry on.
+
+## 7. First task
+
+End on something real. With a mail tool: "Want me to go through your inbox now? `y` · `n`". Without: "Make a new note (⌘N) and it lands in your inbox. Type anything, then say /inbox."
