@@ -128,6 +128,8 @@ Anything else the user types is an answer or a correction.
 
 ## Messages to the user
 
+- The chat shows a linked note: the one that was open when the chat started, even if the user has moved on since. Use it only when the user refers to "this note" or "this page".
+
 - No code blocks, except a draft's text or a command the user should run. Show structured things as a short table or bold labels.
 - Name pages by their name, as links, without `.md` or folder paths: "your page [[acme-deal]]", not `02-subjects/acme-deal/acme-deal.md`.
 - When proposing to write something, say which page it goes on, and that the agent keeps it up to date from then on.
