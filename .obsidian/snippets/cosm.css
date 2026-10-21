@@ -21,3 +21,21 @@ body {
 .nav-file-title[data-path="HELP.md"] {
   display: none;
 }
+
+/* cosm: answer keys (<kbd>y</kbd>) stand out, in the chat and in notes */
+kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.05em 0.45em;
+  margin: 0 0.1em;
+  border-radius: 6px;
+  background: var(--interactive-accent);
+  color: var(--text-on-accent);
+  font-family: var(--font-interface);
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  border: none;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}

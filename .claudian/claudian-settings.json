@@ -4,7 +4,13 @@
   "providerConfigs": {
     "claude": {
       "enabled": true,
-      "visibleModels": ["opus", "sonnet", "fable", "haiku"]
+      "visibleModels": [
+        "opus",
+        "sonnet",
+        "fable",
+        "haiku"
+      ]
     }
-  }
+  },
+  "enableDualPane": false
 }

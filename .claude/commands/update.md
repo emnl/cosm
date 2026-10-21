@@ -19,7 +19,7 @@ Read the new folder's `VERSION`. If it equals this vault's, say "cosm is up to d
 
 ## 2. Show what's new
 
-Show the new `CHANGES.md` entries for every version newer than this vault's. Then ask: "Update from X to Y? Your notes, `profile.md`, `MAP.md`, your preferences, your own skills and your Obsidian choices (light or dark, theme, plugins you turned on) are not touched. `y` · `n`". If a `CHANGES.md` entry says it must change one of those Obsidian files, say so in the question and ask for it separately. If step 3 will delete files that the new version dropped, list them in the question. On `n`, delete the temporary folder and stop.
+Show the new `CHANGES.md` entries for every version newer than this vault's. Then ask: "Update from X to Y? Your notes, `profile.md`, `MAP.md`, your preferences, your own skills and your Obsidian choices (light or dark, theme, plugins you turned on) are not touched. <kbd>y</kbd> yes · <kbd>n</kbd> no". If a `CHANGES.md` entry says it must change one of those Obsidian files, say so in the question and ask for it separately. If step 3 will delete files that the new version dropped, list them in the question. On <kbd>n</kbd>, delete the temporary folder and stop.
 
 ## 3. Replace
 

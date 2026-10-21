@@ -32,6 +32,6 @@ Keep it to a few lines, in the user's language:
 3. **Map:** add any folder listed as not yet in `MAP.md`, with a few words, and say so in one line.
 4. **Inbox:** if items are waiting, one line: "3 items in the inbox. /inbox?"
 5. **Review:** if the last review was more than 7 days ago, one line: "Last review 12 days ago. /review?"
-6. If the user's message asked something, answer it here instead. Otherwise ask which subject to pick up: the subjects from Due and Last worked on, numbered, plus "something else".
+6. If the user's message asked something, answer it here instead. Otherwise end with one line that suggests where to pick up and leaves it open: "Pick up where you left off: [[acme-deal]], [[q4-budget]] — or just tell me what you want to do." No numbered choice.
 
-When the user picks a subject, read its state page (and `tasks.md` if there is one) and say where it stands and what is open, in a few lines. Then wait for what they want to do.
+When the user names a subject, read its state page (and `tasks.md` if there is one) and say where it stands and what is open, in a few lines. Then wait for what they want to do.
