@@ -3,7 +3,7 @@
   "name": "cosm",
   "version": "0.4.0",
   "minAppVersion": "1.12.0",
-  "description": "Small touches for cosm: friendly names for mail, calendar and other tools in the Claudian chat.",
+  "description": "Small touches for cosm: the chat opens at start, and mail, calendar and other tools show friendly names in it.",
   "author": "cosm",
   "isDesktopOnly": true
 }

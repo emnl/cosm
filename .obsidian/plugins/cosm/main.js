@@ -1,4 +1,4 @@
-// cosm helper: shows MCP tool names in the Claudian chat as "Gmail · Search threads"
+// cosm helper: opens the chat at start if it was closed, and shows MCP tool names in the Claudian chat as "Gmail · Search threads"
 // instead of "mcp__claude_ai_Gmail__search_threads". It only rewrites text that still
 // starts with "mcp__", so it does nothing once Claudian shows friendly names itself.
 const { Plugin } = require("obsidian");
@@ -30,6 +30,10 @@ module.exports = class CosmPlugin extends Plugin {
       }
     });
     this.app.workspace.onLayoutReady(() => {
+      // Make sure the chat is open: cosm hides the ribbon, so a closed chat has no button to bring it back.
+      if (this.app.workspace.getLeavesOfType("claudian-view").length === 0) {
+        this.app.commands.executeCommandById("realclaudian:open-view");
+      }
       fixIn(document.body);
       this.observer.observe(document.body, { childList: true, subtree: true, characterData: true });
     });

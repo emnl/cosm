@@ -13,6 +13,7 @@ You can just type. The AI tidies up when it files a note. These few things are a
 | Bold | **text** between two stars on each side |
 | Link to another page | type `[[` and pick the page |
 | Back to the start page | ⌘O → HOME |
+| Chat gone from the right | ⌘P → "Toggle chat view" (it also comes back by itself next time Obsidian starts) |
 
 The markup only shows on the line your cursor is on; everywhere else the note looks finished.
 
