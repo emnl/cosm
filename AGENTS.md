@@ -149,5 +149,6 @@ No passwords, tokens or card numbers in notes. If one turns up in the inbox or a
 
 ## Quirks
 
+- Stay in the vault root: never `cd` into a folder. Refer to files by their path from the root (`02-subjects/Acme supply deal/…`). The commands' lookups run from the session's current folder and find nothing anywhere else.
 - "File has been modified since read": the editor touched the file. Re-read it, then write.
 - The editor pads markdown table columns, so an exact-text edit on a table row can miss. Match the row by its first cell and replace the whole line.
