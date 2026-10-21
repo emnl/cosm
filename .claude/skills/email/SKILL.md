@@ -10,16 +10,21 @@ How the user wants it done, from `03-references/preferences/email.md` (if its te
 
 If no mail tool is found, say how to connect one: the settings of the account they signed in with, under Connectors, then a new chat.
 
-## How the inbox works
+## Two ways of working
 
-The inbox is the user's to-do list: a thread in it still needs something. Archived means done. Work oldest first, by each thread's last message. Read a thread from its newest message; don't take its last activity from a search result, which may show only some of its messages.
+Which one the user has is a line in `email.md`; until it is there, ask first (§ Offer once).
+
+- **They archive.** The inbox is their to-do list: a thread in it still needs something; archived means done. Work oldest first, by each thread's last message.
+- **They keep everything.** Never suggest archiving. Work from what is waiting on them: threads from the last 2 weeks, and since the date in `.cosm-last-mail` if it is older, where the newest message isn't from the user; newest first. A thread is handled when the user has replied or says done or skip. At the end of the pass, write today's date to `.cosm-last-mail` (one line).
+
+Either way, read a thread from its newest message; don't take its last activity from a search result, which may show only some of its messages.
 
 ## One thread at a time
 
 For each thread, in a few lines:
 1. **What it is:** one sentence.
 2. **Who:** the sender, from their page in `03-references/` if there is one ("Jonas Ek, Acme, the supply deal"); read the subject page it belongs to before proposing anything.
-3. **Proposal:** reply (with the draft's gist), archive, or a line for the user's list (`todo.md`), and why.
+3. **Proposal:** reply (with the draft's gist), archive (only if they archive), nothing needed, or a line for the user's list (`todo.md`), and why.
 4. **Keys:** one line of the keys that apply: `d` create the suggested draft · `a` archive · `y` do what's proposed · `s` skip, next thread · `1` `2` … an option. Anything else the user types is an answer or a correction.
 
 Wait for the answer before the next thread. Skipped threads stay in the inbox and come once in the recap, not again.
@@ -42,8 +47,9 @@ Leave newsletters, notifications and other automated mail out of the one-by-one 
 ## Offer once
 
 Each of these is offered the first time it applies (`AGENTS.md` § Learning):
-- When the inbox has more than about 50 threads: "Your inbox has 1,240 threads. Start fresh? `1` archive everything older than 3 months in one go (it stays searchable) · `2` work only the last 4 weeks, leave the rest · `n` go through it all". Explain once, before it: "The inbox is your to-do list: archived means done." Count the inbox before listing it.
-- When the user says they sent a reply: "Archive a thread when you say it's sent, from now on? `y` · `n`"
+- Before the first pass: "Do you archive mail when it's done, or let your inbox grow? `1` I archive · `2` I keep everything"
+- If they archive, when the inbox has more than about 50 threads: "Your inbox has 1,240 threads. Start fresh? `1` archive everything older than 3 months in one go (it stays searchable) · `2` work only the last 4 weeks, leave the rest · `n` go through it all". Explain once, before it: "The inbox is your to-do list: archived means done." Count the inbox before listing it.
+- If they archive, when the user says they sent a reply: "Archive a thread when you say it's sent, from now on? `y` · `n`"
 
 ## Never
 

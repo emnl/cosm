@@ -31,7 +31,7 @@ Direct and efficient: lead with the answer, no filler or praise, say plainly whe
 | `04-archive/subjects/` | finished subjects, same layout as `02-subjects/` |
 | `04-archive/logs/<YYYY-MM>/` | session logs from `/log`, filed by `/inbox`; never changed after filing |
 
-Root files: `HOME.md` (start page), `MAP.md` (vault map), `profile.md`, `.cosm-last-review` (the date of the last `/review`), and the system files listed in `MANIFEST`. The agent puts nothing else there.
+Root files: `HOME.md` (start page), `MAP.md` (vault map), `profile.md`, `.cosm-last-review` (the date of the last `/review`), `.cosm-last-mail` (the date of the last mail pass, for users who keep their inbox), and the system files listed in `MANIFEST`. The agent puts nothing else there.
 
 ## Reading and writing
 
