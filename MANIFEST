@@ -4,7 +4,7 @@
 #   Exception: adapters for one tool (CLAUDE.md, .claude/, .claudian/).
 # - Write "the user" and "the agent", never a name.
 # - AGENTS.md loads every session: keep it short.
-# source: https://github.com/OWNER/cosm
+# source: https://github.com/emnl/cosm
 AGENTS.md
 CLAUDE.md
 HOME.md
