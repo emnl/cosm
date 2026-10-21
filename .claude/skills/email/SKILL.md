@@ -39,6 +39,11 @@ Leave newsletters, notifications and other automated mail out of the one-by-one 
 - A fact from a thread (a date moved, a decision, a new contact) goes to its page before the next thread, said in one line. Paraphrase it and name the sender and date; never copy mail text into a page.
 - A rule about mail as a whole ("archive newsletters from X without showing me", "sign off with my first name only") goes as a dated line to `03-references/preferences/email.md` at once.
 
+## Offer once
+
+Each of these is offered the first time it applies (`AGENTS.md` § Learning):
+- When the user says they sent a reply: "Archive a thread when you say it's sent, from now on? `y` · `n`"
+
 ## Never
 
 Send a mail. Delete a mail, or change filters or labels, without the user's `y` on that exact change. Archive on your own judgment: only on `a` or `y`.

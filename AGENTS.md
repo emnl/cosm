@@ -110,6 +110,7 @@ When a subject is done, propose moving its folder to `04-archive/subjects/`; mov
 
 - Before doing a kind of work, read its preferences file if `MAP.md` lists one. A file is named for the skill that does the work, or for the kind of work when there is no skill (`invoices.md`); when a correction starts a new one, add its line to `MAP.md` in the same step.
 - A preference or profile line is one dated line: `- Archive newsletters from X without showing them (2026-10-21)`. A line `/setup` wrote as a starting point ends `(default)` instead of a date; the user may delete it. Profile lines go under `## How I like to work`.
+- A habit cosm suggests (a skill lists them under "Offer once") is offered the first time it applies, when its preferences file has no line about it: one question, then the user's answer becomes a dated preference line, followed from then on.
 - A procedure done the same way a second time is a skill candidate: `/reflect` proposes it.
 - Size: about 2,000 characters per preferences file and 1,500 for `profile.md`. Past that, `/review` proposes a tighter version (duplicates merged, overridden lines dropped).
 
