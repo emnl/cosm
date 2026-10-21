@@ -1,7 +1,13 @@
-# Files /update may replace. Everything else is the user's and is never touched.
+# cosm's system files. /update replaces exactly these; everything else is the user's.
+# Rules for writing them:
+# - Name no product or vendor; describe a tool by what it does ("a mail tool").
+#   Exception: adapters for one tool (CLAUDE.md, .claude/, .claudian/).
+# - Write "the user" and "the agent", never a name.
+# - AGENTS.md loads every session: keep it short.
 AGENTS.md
 CLAUDE.md
 HOME.md
+HELP.md
 VERSION
 CHANGES.md
 MANIFEST

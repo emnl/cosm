@@ -1,1 +1,21 @@
-{}
+{
+  "outputStyle": "Concise",
+  "autoMemoryEnabled": false,
+  "autoCompactEnabled": false,
+  "includeGitInstructions": false,
+  "permissions": {
+    "allow": [
+      "Bash(uvx:*)",
+      "Bash(uv run:*)",
+      "Bash(textutil:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(date:*)",
+      "Bash(curl -sL https://github.com/:*)",
+      "Bash(unzip:*)"
+    ]
+  },
+  "feedbackSurveyRate": 0,
+  "enableWorkflows": false,
+  "workflowKeywordTriggerEnabled": false
+}

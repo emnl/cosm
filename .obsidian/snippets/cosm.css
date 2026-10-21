@@ -12,3 +12,12 @@ body {
   --font-interface-theme: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
   --font-monospace-theme: ui-monospace, "SF Mono", Menlo, monospace;
 }
+
+/* cosm: keep system files out of the file list (they stay linkable) */
+.nav-file-title[data-path="AGENTS.md"],
+.nav-file-title[data-path="CLAUDE.md"],
+.nav-file-title[data-path="README.md"],
+.nav-file-title[data-path="CHANGES.md"],
+.nav-file-title[data-path="HELP.md"] {
+  display: none;
+}
