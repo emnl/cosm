@@ -58,3 +58,41 @@ body {
 .claudian-message-content table thead:has(th:first-child:empty) {
   display: none;
 }
+
+/* The chat's linked note shows the page open when the chat started, and goes stale; cosm tells the agent the current page instead. */
+.claudian-input-info-linked {
+  display: none;
+}
+/* ...and its row, while the chip is all it holds. */
+.claudian-input-info-row:not(:has(> :not(.claudian-input-info-linked))) {
+  display: none;
+}
+/* Under an answer: copy only. The speed label's token count moves to the "Worked for" line (cosm plugin). */
+.claudian-message-actions .claudian-response-throughput,
+.claudian-message-actions button.claudian-message-fork-btn,
+button.claudian-message-fork-btn {
+  display: none !important;
+}
+.cosm-work-tokens {
+  margin-inline-start: 0.35em;
+}
+/* The "Worked …" line above an answer: small and quiet, in the theme's own faint text. */
+.claudian-work button.claudian-work-header {
+  font-size: var(--font-ui-smaller);
+  color: var(--text-faint);
+}
+.claudian-work button.claudian-work-header:hover,
+.claudian-work button.claudian-work-header:focus-visible {
+  color: var(--text-muted);
+}
+/* The user's messages: a soft tint of the theme's own text colour instead of Claudian's 30 % black, so they sit
+   quietly in light and dark mode. */
+div.claudian-message-user > div.claudian-message-content {
+  background: color-mix(in srgb, var(--text-normal) 7%, transparent);
+  color: var(--text-normal);
+  border-radius: 14px;
+  padding: 8px 14px;
+}
+div.claudian-message-user ::selection {
+  background: var(--text-selection);
+}

@@ -101,32 +101,14 @@
               },
               "icon": "bot",
               "title": "Claudian"
-            }
-          },
-          {
-            "id": "0f3a8820e11ee926",
-            "type": "leaf",
-            "state": {
-              "type": "backlink",
-              "state": {
-                "file": "HOME.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
-                "showSearch": false,
-                "searchQuery": "",
-                "backlinkCollapsed": false,
-                "unlinkedCollapsed": true
-              },
-              "icon": "links-coming-in",
-              "title": "Backlinks"
-            }
+            },
+            "pinned": true
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 512
   },
   "left-ribbon": {
     "hiddenItems": {

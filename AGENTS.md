@@ -34,7 +34,7 @@ Direct: lead with the answer, no filler or praise, say plainly when something is
 | `04-archive/` | `spaces/` (finished, same layout), `logs/<YYYY-MM>/` (from `/log`, never changed after filing) |
 | `profile.md` | who the user is, how they work in general (propose, write on ==y==) |
 
-Root files: `MAP.md`, `profile.md`, `.cosm-last-review` (the date of the last `/review`, or of `/setup`), `.cosm-finished` (the version whose update steps have run), `.cosm-last-mail` (the date of the last mail pass, for users who keep their inbox), and the system files listed in `MANIFEST`. The agent puts nothing else there.
+Root files: `MAP.md`, `profile.md`, `.cosm-last-review` (the date of the last `/review`, or of `/setup`), `.cosm-finished` (the version whose update steps have run), `.cosm-last-mail` (the date of the last mail pass, for users who keep their inbox), and the system files listed in `MANIFEST`, plus the `.trash/` folder. The agent puts nothing else there.
 
 ## Reading and writing
 
@@ -85,6 +85,7 @@ Tasks, one line each, with a date when there is one: `- [ ] Send Acme the revise
 - Link pages by name: `[[Anna Berg]]`. A meeting note links everyone who was there and its space; a state page links the people who matter to it.
 - When a person's or company's name gets clearer (a surname, the full company name), propose renaming the file; on ==y==, rename it and fix the links.
 - Move and rename with `mv`, not a note app's command line (it may be off). Links are by name, so a move keeps them working.
+- Delete by moving the file to `.trash/` (a trash folder in the vault, so it can be undone), never `rm`.
 - Every page starts with a `# Heading`. No frontmatter.
 
 ### MAP.md

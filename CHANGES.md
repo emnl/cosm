@@ -1,5 +1,10 @@
 # Changes
 
+## 0.6.2
+- A cleaner chat: the right sidebar holds only the chat, pinned; under an answer there's just copy; the line above it reads "Worked 4s · 325 tokens", small and faint; your own messages sit in a soft box.
+- The stale note chip under the chat box is gone.
+- A page the agent deletes goes to the vault's trash, so it can be brought back.
+
 ## 0.6.1
 - The agent treats your vault as your own space: bold inside it, careful with anything that leaves it.
 - New folders are listed in your map by name, indented under their folder; /recall and /review no longer report them as missing.
