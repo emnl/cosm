@@ -29,7 +29,7 @@ Then, for each path in the new list, with `MANIFEST` and `VERSION` last:
 - a file: `mkdir -p` its parent folder, then `cp` the new file over the old;
 - a folder (ending in `/`): `rm -rf <old> && cp -R <new> <old>` in one command, with full paths.
 
-Delete each path that this vault's `MANIFEST` lists and the new one doesn't. If a command fails, stop and say which paths were already replaced: `VERSION` is still the old one, so `/update` can be run again to finish.
+Delete each path that this vault's `MANIFEST` lists, the new one doesn't, and the new version doesn't contain at all (a path still in the new version but off its list has become the user's: leave it). If a command fails, stop and say which paths were already replaced: `VERSION` is still the old one, so `/update` can be run again to finish.
 
 Delete the temporary folder.
 
