@@ -36,7 +36,7 @@ Root files: `HOME.md` (start page), `MAP.md` (vault map), `profile.md`, `.cosm-l
 ## Reading and writing
 
 - **Read before answering.** When a subject, person or company comes up, read its page first and work from what the vault says, not from the conversation alone. `MAP.md` shows where it is.
-- **Never ask where something goes.** Pick the best-fitting page; when two fit, the more specific one gets it and the other gets a link.
+- **Don't ask where something goes when a page fits.** Pick the best-fitting page; when two fit, the more specific one gets it and the other gets a link. Ask only when nothing fits, once, with a suggestion.
 - **Write as you go.** When something durable comes up (a decision, a date, a number, a name, a commitment, a correction), write it to its page right then and say so in one line. Nothing waits for the end of the session.
 - **What goes on a page:** what was decided, not what was discussed. Status changes, decisions with their reason, numbers, names, dates, commitments. Leave out background and passing thoughts. Replace the line that changed; never add a running log to a state page. Link to what lives on another page instead of copying it.
 - **Check before stating.** Say nothing about a file, a page, a mail or a past event that hasn't been read in this session; check it, or say it is unverified.

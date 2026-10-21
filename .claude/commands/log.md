@@ -25,7 +25,7 @@ Two to four sentences: what the session was about and where it ended.
 - What is unfinished or waiting, and on whom.
 
 ## Proposed tasks
-- Things the user said they'd do, for their list (filed only on their `y` during /inbox).
+- Things the user said they'd do that aren't on their list yet (proposed for it during /inbox).
 ```
 
 Leave a section out when it would be empty. No transcript, no tool output, no long quotes.

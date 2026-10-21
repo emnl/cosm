@@ -5,24 +5,34 @@ description: Get the newest version of cosm — replaces cosm's own files, never
 
 This vault: version !`cat VERSION 2>/dev/null || echo unknown`. Source: !`grep -m1 '^# source:' MANIFEST | sed 's/^# source: *//'`
 
+Each command runs in a new shell, so a path one command prints must be written out in full in the next; never rely on a variable from an earlier command.
+
 ## 1. Fetch
 
 ```
-T=$(mktemp -d) && curl -sL <source>/archive/refs/heads/main.zip -o "$T/cosm.zip" && unzip -q "$T/cosm.zip" -d "$T" && echo "$T"/*/
+T=$(mktemp -d) && echo "$T" && curl -fsSL <source>/archive/refs/heads/main.zip -o "$T/cosm.zip" && unzip -q "$T/cosm.zip" -d "$T" && ls -d "$T"/*/
 ```
 
-That folder is the new version. Read its `VERSION`. If it is the same as this vault's, say "cosm is up to date (version X)", delete the temporary folder (`rm -rf "$T"`), and stop.
+The last line printed is the new version's folder. If no folder was printed, say the new version couldn't be downloaded (quote the error), delete the temporary folder, and stop: nothing has changed.
+
+Read the new folder's `VERSION`. If it equals this vault's, say "cosm is up to date (version X)", delete the temporary folder, and stop.
 
 ## 2. Show what's new
 
-Show the lines of the new `CHANGES.md` for every version newer than this vault's, then ask: "Update from X to Y? Your notes, `profile.md`, `MAP.md`, your preferences and your own skills are not touched. `y` · `n`". On `n`, delete the temporary folder and stop.
+Show the new `CHANGES.md` entries for every version newer than this vault's. Then ask: "Update from X to Y? Your notes, `profile.md`, `MAP.md`, your preferences and your own skills are not touched; Obsidian's look and plugin settings go back to cosm's. `y` · `n`". If step 3 will delete files that the new version dropped, list them in the question. On `n`, delete the temporary folder and stop.
 
 ## 3. Replace
 
-On `y`, for each line in the **new** `MANIFEST` that isn't a `#` comment: copy that file, or that folder's contents, from the new version over this vault's (`cp` for a file; `rm -rf` the old folder, then `cp -R` the new one, for a path ending in `/`). Files the user made are not on the list, so they stay.
+Read both `MANIFEST` files first, this vault's and the new one, skipping blank lines and lines starting with `#`. Stop and change nothing if any line starts with `/`, contains `..`, names a numbered folder (`01-`…`04-`), `profile.md` or `MAP.md`, or if a path in the new list is missing from the new version.
 
-Then delete the temporary folder.
+Then, for each path in the new list, with `MANIFEST` and `VERSION` last:
+- a file: `mkdir -p` its parent folder, then `cp` the new file over the old;
+- a folder (ending in `/`): `rm -rf <old> && cp -R <new> <old>` in one command, with full paths.
+
+Delete each path that this vault's `MANIFEST` lists and the new one doesn't. If a command fails, stop and say which paths were already replaced: `VERSION` is still the old one, so `/update` can be run again to finish.
+
+Delete the temporary folder.
 
 ## 4. Report
 
-Say which version the vault is on now, how many files were replaced, and that the user's notes weren't touched. If anything in `.obsidian/` was replaced, add: "Quit Obsidian and open it again to finish."
+Say the vault is now on version Y and the user's notes weren't touched, then: "Quit Obsidian and open it again now to finish."

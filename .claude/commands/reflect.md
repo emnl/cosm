@@ -16,7 +16,9 @@ Ask: "Anything wrong or missing? `y` all fine · or tell me". Fix what they corr
 
 ## 2. Anything not yet written
 
-Corrections or preferences the user gave that didn't make it into a file (said in passing, or before the agent noticed). Propose each as its line, one at a time, with where it would go; write on `y`.
+Anything durable from the whole session that isn't on its page yet: a correction or preference, a decision, a date, an unfinished thread (it goes to the subject's `tasks.md` or the user's `todo.md`). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on `y`.
+
+If nothing was learned or missed, say so in one line and go to step 4.
 
 ## 3. A skill?
 
@@ -24,11 +26,11 @@ A procedure is a skill candidate when it was done the same way twice or more (th
 
 > "You sorted supplier invoices the same way three times: check the VAT line, match the order, file under the supplier. Make it a skill, `invoices`? `y` · `n`"
 
-On `y`, write `03-references/skills/<name>/SKILL.md` and its line in `MAP.md`, and move any matching preference lines into `03-references/preferences/<name>.md`. How to write it:
-- Front: `name`, and a `description` that says what it does and when to use it, in the user's words; this is what makes it come up next time.
-- Body: the steps as rules the agent can follow on its own, short. If a rule needs an example to be understood, rewrite the rule.
-- Self-contained: what it needs is in its folder; nothing copied from elsewhere goes stale in it. Name the user's own tools if they are the user's (their mail app, their spreadsheet).
-- Its first step says to read `03-references/preferences/<name>.md` if it exists. (A skill here is read as a file when `MAP.md` points to it, so it can't load the file by itself.)
+On `y`, write `03-references/skills/<name>/SKILL.md`, add its line to `MAP.md` (`- 03-references/skills/<name>/ — <when it applies, in the user's words>`), and move the matching preference lines (name them in the proposal) into `03-references/preferences/<name>.md`, with its `MAP.md` line if the file is new. How to write it:
+- Starts with `# <Name>` and one line on what it does. No frontmatter: the agent finds it through its `MAP.md` line.
+- The steps as rules the agent can follow on its own, short. Examples only for the shape of an output; a rule that needs an example to be understood is rewritten.
+- Self-contained: what it needs sits in its folder; facts that live on a page (a price, a contact) are linked, not copied. Name the user's own tools if they are the user's (their mail app, their spreadsheet).
+- Its first step says to read `03-references/preferences/<name>.md` if it exists.
 
 ## 4. Log
 

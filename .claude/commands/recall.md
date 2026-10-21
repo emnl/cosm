@@ -10,7 +10,7 @@ Takes no argument. `profile.md` and `MAP.md` are already loaded. If `## Me` in `
 Today: !`date +%Y-%m-%d`
 
 Open tasks due within 3 days, overdue included, from anywhere in the vault:
-!`grep -rn --include='*.md' -E '^[[:space:]]*- \[ \].*[0-9]{4}-[0-9]{2}-[0-9]{2}' 01-inbox 02-subjects 03-references 2>/dev/null | awk 'BEGIN{"date -v+3d +%F" | getline lim} {if (match($0, /[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/) && substr($0, RSTART, 10) <= lim) print}'`
+!`grep -rn --include='*.md' -E '^[[:space:]]*- \[ \].*[0-9]{4}-[0-9]{2}-[0-9]{2}' 01-inbox 02-subjects 03-references 2>/dev/null | awk -v lim="$(date -v+3d +%F)" '{s=$ 0; sub(/^[^:]*:[0-9]+:/,"",s); if (match(s,/📅 *[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/)) d=substr(s,RSTART+RLENGTH-10,10); else {gsub(/\[\[[^]]*\]\]/,"",s); if (!match(s,/[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/)) next; d=substr(s,RSTART,10)} if (d<=lim) print}'`
 
 Most recently changed pages (newest first):
 !`find 02-subjects -name '*.md' -not -name todo.md -not -name tasks.md -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -5`
@@ -21,7 +21,7 @@ Items waiting in the inbox: !`find 01-inbox -type f -not -name '.*' 2>/dev/null 
 
 Last review: !`cat .cosm-last-review 2>/dev/null || echo never`
 
-Newest session log: !`find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ '{print $NF "\t" $0}' | sort | tail -1 | cut -f2`
+Newest session log: !`find 01-inbox 04-archive/logs -name '*-log-*.md' 2>/dev/null | awk -F/ '{print $NF "\t" $ 0}' | sort | tail -1 | cut -f2`
 
 ## Answer
 
