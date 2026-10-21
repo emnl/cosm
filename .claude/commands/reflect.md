@@ -16,13 +16,13 @@ Ask: "Anything wrong or missing? `y` all fine · or tell me". Fix what they corr
 
 ## 2. Anything not yet written
 
-Anything durable from the whole session that isn't on its page yet: a correction or preference, a decision, a date, an unfinished thread (it goes to the subject's `tasks.md` or the user's `todo.md`). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on `y`.
+Anything durable from the whole session that isn't on its page yet: a correction or preference (including a way of working the user showed without saying it as a rule), a decision, a date, an unfinished thread (it goes to the subject's `tasks.md` or the user's `todo.md`). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on `y`.
 
 If nothing was learned or missed, say so in one line and go to step 4.
 
 ## 3. A skill?
 
-A procedure is a skill candidate when it was done the same way twice or more (this session, or this session and an earlier one in a log), or when the user had to explain the same steps again. Propose at most one:
+A procedure is a skill candidate when it was done the same way twice or more (this session, or this session and an earlier one in a log), or when the user had to explain the same steps again. Propose each candidate, one at a time:
 
 > "You sorted supplier invoices the same way three times: check the VAT line, match the order, file under the supplier. Make it a skill, `invoices`? `y` · `n`"
 

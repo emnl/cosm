@@ -68,7 +68,9 @@ If nothing was found, say "Vault is tidy." in one line.
 
 Read the Decided and Open sections of the logs above. For anything a page doesn't already say, propose writing it there.
 
-Then read the preference files and the same logs, and propose at most one pattern: a preference corrected several times (propose a firmer line, or moving it into its skill), or a procedure done the same way in several sessions (propose making it a skill, the way `/reflect` does).
+Then read the preference files and the same logs, and propose, one at a time:
+- **Preferences:** a way of working the user showed in several sessions that no preference line says yet; a line corrected several times (a firmer line, or moving it into its skill); two lines that say the same thing (merge them).
+- **Skills:** a procedure done the same way in several sessions, made into a skill the way `/reflect` does.
 
 ## Finish
 
