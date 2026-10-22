@@ -1,4 +1,4 @@
-// cosm helper: opens the chat at start if it was closed, keeps the right sidebar for the chat alone (pinned), shows an answer's token count on its "Worked for" line, and shows MCP tool names in the Claudian chat as "Gmail · Search threads"
+// cosm helper: opens the chat at start if it was closed, keeps the right sidebar for the chat alone (pinned), shows an answer's token count on its "Worked for" line, names shell commands in plain words ("gran · Reading a table" instead of "Bash"), and shows MCP tool names in the Claudian chat as "Gmail · Search threads"
 // instead of "mcp__claude_ai_Gmail__search_threads". It only rewrites text that still
 // starts with "mcp__", so it does nothing once Claudian shows friendly names itself.
 const { Plugin } = require("obsidian");
@@ -11,12 +11,49 @@ function pretty(text) {
   return server + " · " + tool.charAt(0).toUpperCase() + tool.slice(1);
 }
 
+// A shell command's row says "Bash". Claudian keeps the command's first 60 characters in a hidden summary beside it;
+// from that, say in plain words what is happening. Display only: an unknown command reads "Running a command".
+const COSM = [
+  [/^gran-query\b/, "gran · Reading a table"], [/^gran-exec\b/, "gran · Writing to a table"],
+  [/^gran-import\b/, "gran · Loading a file into a table"], [/^gran-(describe|list)\b/, "gran · Looking at your tables"],
+  [/^search-logs\b/, "Searching your logs"], [/^search(-explain)?\b/, "Searching your notes"],
+  [/^update-/, "Updating cosm"], [/^fixes\b/, "Checking known fixes"], [/./, "cosm · Checking your vault"],
+];
+const SHELL = [
+  [/^(ls|find|fd)\b/, "Looking through folders"], [/^(cat|head|tail|sed -n|less)\b/, "Reading a file"],
+  [/^mv\b/, "Moving a file"], [/^mkdir\b/, "Making a folder"], [/^(cp|rsync)\b/, "Copying a file"],
+  [/^(grep|rg)\b/, "Searching in files"], [/^(uv run|uvx|~\/\.local\/bin\/uv)\b/, "Running a tool (Word, Excel, PDF …)"],
+  [/^curl\b/, "Fetching from the web"], [/^textutil\b/, "Converting a document"], [/^unzip\b/, "Unpacking a file"],
+  [/^date\b/, "Checking the date"], [/^open\b/, "Opening a file"],
+];
+function shellLabel(cmd) {
+  const parts = cmd.replace(/\.\.\.$/, "").split(/\s*(?:&&|\|\||;|\|)\s*/).map((x) => x.trim()).filter(Boolean);
+  for (const part of parts) {
+    const m = /^(?:\/bin\/)?bash\s+\.claude\/scripts\/cosm\.sh\s+(\S+)/.exec(part);
+    if (m) return COSM.find(([re]) => re.test(m[1]))[1];
+  }
+  for (const part of parts) {
+    const hit = SHELL.find(([re]) => re.test(part));
+    if (hit) return hit[1];
+  }
+  return "Running a command";
+}
+function labelBash(nameEl) {
+  if (nameEl.dataset.cosmBash === undefined && (nameEl.textContent || "").trim() !== "Bash") return;
+  const summary = nameEl.parentElement && nameEl.parentElement.querySelector(".claudian-tool-summary");
+  const cmd = summary ? (summary.textContent || "").trim() : "";
+  if (!cmd) return;
+  const label = shellLabel(cmd);
+  if (nameEl.textContent !== label) { nameEl.dataset.cosmBash = ""; nameEl.textContent = label; }
+}
+
 function fixIn(root) {
   if (!root || !root.querySelectorAll) return;
   const els = root.matches && root.matches(".claudian-tool-name") ? [root] : root.querySelectorAll(".claudian-tool-name");
   els.forEach((el) => {
     const p = pretty(el.textContent || "");
     if (p) el.textContent = p;
+    else labelBash(el);
   });
 }
 
@@ -63,6 +100,8 @@ module.exports = class CosmPlugin extends Plugin {
       for (const m of mutations) {
         const target = m.target.nodeType === 1 ? m.target : m.target.parentElement;
         if (target && target.closest && target.closest(".claudian-tool-name")) fixIn(target.closest(".claudian-tool-name"));
+        const summary = target && target.closest && target.closest(".claudian-tool-summary");
+        if (summary && summary.parentElement) fixIn(summary.parentElement);
         m.addedNodes.forEach((n) => fixIn(n.nodeType === 1 ? n : n.parentElement));
       }
       if (!this.tokenTimer) this.tokenTimer = setTimeout(() => { this.tokenTimer = null; addTokens(document.body); }, 300);

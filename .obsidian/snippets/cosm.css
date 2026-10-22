@@ -47,13 +47,18 @@ body {
   display: none;
 }
 
-/* cosm: tables in the chat — labels on one line, no empty header row */
-.claudian-message-content table td:first-child,
-.claudian-message-content table th:first-child {
-  white-space: nowrap;
+/* cosm: tables in the chat — words wrap whole (never split mid-word), and a table wider than a narrow chat scrolls
+   sideways instead of squeezing its other columns to nothing; no empty header row */
+.claudian-message-content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.claudian-message-content table td,
+.claudian-message-content table th {
   overflow-wrap: normal;
   word-break: normal;
-  width: 1%;
+  min-width: 7em;
 }
 .claudian-message-content table thead:has(th:first-child:empty) {
   display: none;

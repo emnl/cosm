@@ -133,7 +133,8 @@ Anything else the user types is an answer or a correction.
 ## Tools
 
 - Mail and calendar tools may connect a moment after a session starts; search the available tools for them before concluding there are none.
-- Use what a fresh Mac has (`curl`, `unzip`, `textutil`, `find`, `grep`, reading PDFs and images directly), plus `uv` / `uvx` when installed (in `~/.local/bin/` if not found on the path). For reading or making Word, Excel, PowerPoint and PDF files, follow the tools skill (`.claude/skills/tools/`). Never install anything without asking.
+- Use what a fresh Mac has (`curl`, `unzip`, `textutil`, `find`, `grep`, reading PDFs and images directly), plus `uv` / `uvx` when installed (in `~/.local/bin/` if not found on the path). For reading or making Word, Excel, PowerPoint and PDF files, use the tools skill. Never install anything without asking.
+- cosm's own skills (email, meeting notes, tools, gran) are used by loading them with the skill tool, never by reading their file: loading runs their live lines (the user's preferences, their tables, known fixes), reading leaves those as dead text. The user's own skills in `03-knowledge/skills/` are read from their `SKILL.md`.
 
 ## Downloads
 

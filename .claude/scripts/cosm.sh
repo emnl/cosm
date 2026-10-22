@@ -463,11 +463,19 @@ move_folder() { # $1 old, $2 new: move what an earlier version kept in $1 into $
 update_migrate() { # bring a vault from an earlier version's layout to this one; each step checks first, so a second run does nothing
   local f n=0
   MIGRATE_MOVED=0
-  # 0.7.1: the fixes folder, and its line in MAP.md below the preferences line
+  # 0.7.1: the fixes folder. MAP.md gets its line after the preferences block; 0.7.1 put it straight below the
+  # preferences line, above that folder's entries, so each entry is sorted back under the folder it is in.
   [ -d 03-knowledge/fixes ] || { mkdir -p 03-knowledge/fixes && echo "ADDED folder 03-knowledge/fixes/"; }
-  if [ -f MAP.md ] && ! grep -qF '03-knowledge/fixes/' MAP.md; then
-    awk '{print} /^- 03-knowledge\/preferences\// && !d {print "- 03-knowledge/fixes/ — what works when a tool failed (each listed below it)"; d=1}
-      END {if (!d) print "- 03-knowledge/fixes/ — what works when a tool failed (each listed below it)"}' MAP.md > MAP.md.new && mv MAP.md.new MAP.md && echo "ADDED 03-knowledge/fixes/ to MAP.md"
+  if [ -f MAP.md ]; then
+    awk -v F="- 03-knowledge/fixes/ — what works when a tool failed (each listed below it)" '
+      function flush() { if (!inblk) return; print P; for (k = 1; k <= np; k++) print pl[k]; print (FX != "" ? FX : F); for (k = 1; k <= nf; k++) print fl[k]; inblk = 0; done = 1 }
+      /^- 03-knowledge\/preferences\// && !done { P = $0; inblk = 1; next }
+      /^- 03-knowledge\/fixes\// { FX = $0; if (!inblk && !done) { hold = 1 }; next }
+      inblk && /^  +- / { n = $0; sub(/^ +- /, "", n); sub(/ — .*$/, "", n)
+        if (system("test -e \"03-knowledge/fixes/" n "\"") == 0) fl[++nf] = $0; else pl[++np] = $0; next }
+      { flush(); print }
+      END { flush(); if (!done) print (FX != "" ? FX : F) }' MAP.md > MAP.md.new
+    if cmp -s MAP.md MAP.md.new; then rm -f MAP.md.new; else mv MAP.md.new MAP.md && echo "FIXED the fixes/ line in MAP.md"; fi
   fi
   # 0.5: 02-subjects -> 02-spaces, 03-references -> 03-knowledge, 04-archive/subjects -> 04-archive/spaces
   move_folder 04-archive/subjects 04-archive/spaces

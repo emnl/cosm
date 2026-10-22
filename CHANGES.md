@@ -1,5 +1,11 @@
 # Changes
 
+## 0.7.2
+- The chat says in plain words what the AI is doing ("gran · Reading a table", "Searching your notes", "Moving a file") instead of "Bash".
+- The AI loads cosm's skills properly, so your preferences, tables and known fixes are in front of it at once.
+- Tables in a narrow chat scroll sideways instead of squeezing their columns.
+- Fixed: 0.7.1 put the fixes folder's line in your map above your preferences files; this update sorts them back.
+
 ## 0.7.1
 - Search ignores everyday words (in English and your language), so it attaches fewer pages that only share words like "first" or "list" with your message.
 - Logs saved under the older name format are found as logs.
