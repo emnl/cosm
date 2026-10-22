@@ -17,7 +17,7 @@ Ask: "Anything wrong or missing? ==y== all fine · or tell me". Fix what they co
 
 ## 2. Anything not yet written
 
-Anything durable from the whole session that isn't on its page yet: a correction or preference (including a way of working the user showed without saying it as a rule), a decision, a date, an unfinished thread (it goes to the space's `tasks.md` or the user's `todo.md`), a failure the agent got past without writing its fix, rows or figures that fit gran but weren't offered, and `tmp_` tables this session made (keep: rename and describe; or drop). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on ==y==.
+Anything durable from the whole session that isn't on its page yet: a correction or preference (including a way of working the user showed without saying it as a rule), a decision, a date, an unfinished thread (it goes to the space's `tasks.md` or the user's `todo.md`), a failure the agent got past without writing its fix, rows or figures that fit gran but weren't offered, and `tmp_` tables this session made (`gran-list` ends with them; keep: rename and describe; or drop). Check the page before calling it missing. Propose each, one at a time, with where it goes; write on ==y==.
 
 If nothing was learned or missed, say so in one line.
 

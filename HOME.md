@@ -6,6 +6,7 @@ Your notes, and an AI that reads and writes them. The chat is on the right.
 - /recall — where things stand, and what to pick up
 - drop anything in 01-inbox/, then /inbox files it
 - "go through my email"
+- "keep my expenses in a table": the AI keeps tables for you and adds them up
 - /reflect when you're done, /log for a record
 
 **Weekly:** /review · **New version:** /update

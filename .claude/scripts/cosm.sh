@@ -48,15 +48,18 @@ version() { cat VERSION 2>/dev/null || echo unknown; }
 # --- search ----------------------------------------------------------------------
 # A BM25 index of the vault (SQLite's FTS5, built into the Mac). It is a cache rebuilt from the notes, kept outside
 # the vault so cloud sync never copies it: ~/Library/Caches/cosm/<vault id>/. Deleting it loses nothing.
-# pages: every page except logs, skills, preferences and fixes. logs: '* Log – *.md' files. Kept apart because a log
+# pages: every page except logs, skills, preferences and fixes. logs: '* Log – *.md' files (and '<date>-<time>-log-*.md', the name before 0.4). Kept apart because a log
 # mentions everything and would crowd out the pages that hold the state.
 cache_dir() { local d; d="$HOME/Library/Caches/cosm/$(md5 -q -s "$PWD")"; mkdir -p "$d/shown" 2>/dev/null; echo "$d"; }
+INDEX_V=2 # raise when the index is built differently
 FTS_TOK="tokenize = 'unicode61 remove_diacritics 0'"
 PAT_SQL="CREATE TEMP TABLE pat AS SELECT DISTINCT word, '\"' || stem || '\"' || CASE WHEN pre = 1 THEN '*' ELSE '' END AS pat FROM pin;"
 index_sync() { # bring the index up to date: re-read changed files, drop deleted ones. One run at a time.
   local c; c=$(cache_dir)
   [ -n "$(find "$c/lock" -maxdepth 0 -mmin +1 2>/dev/null)" ] && rmdir "$c/lock" 2>/dev/null
   mkdir "$c/lock" 2>/dev/null || return 0
+  # the index's shape or rules changed in this version: start it again
+  [ "$(sqlite3 "$c/index.db" 'PRAGMA user_version;' 2>/dev/null)" = "$INDEX_V" ] || rm -f "$c/index.db"
   find 01-inbox 02-spaces 03-knowledge 04-archive -type f -name '*.md' -not -path '03-knowledge/skills/*' \
     -not -path '03-knowledge/preferences/*' -not -path '03-knowledge/fixes/*' -print0 2>/dev/null |
     xargs -0 stat -f $'%N\t%m' 2>/dev/null | grep -v -e '"' > "$c/files.tsv"
@@ -85,14 +88,15 @@ CREATE TEMP TABLE doc AS
                     ltrim(CASE WHEN body LIKE '# %' THEN substr(body, instr(body, char(10)) + 1) ELSE body END, char(10, 13, 32)) AS rest,
                     CASE WHEN instr(body, char(10) || '## Summary') > 0
                          THEN ltrim(substr(body, instr(body, char(10) || '## Summary') + 11), char(10, 13, 32)) END AS summ FROM a)
-  SELECT path, mtime, name, body, name LIKE '% Log – %' AS is_log,
-         CASE WHEN name LIKE '% Log – %' AND summ IS NOT NULL
+  SELECT path, mtime, name, body, (name LIKE '% Log – %' OR name GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]-log-*') AS is_log,
+         CASE WHEN (name LIKE '% Log – %' OR name GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]-log-*') AND summ IS NOT NULL
               THEN substr(summ, 1, instr(summ || char(10) || '## ', char(10) || '## ') - 1)
               ELSE substr(rest, 1, instr(rest || char(10), char(10)) - 1) END AS lead FROM b;
 INSERT INTO pages(path, name, lead, body) SELECT path, name, substr(trim(lead), 1, 300), body FROM doc WHERE NOT is_log;
 INSERT INTO logs(path, name, lead, body) SELECT path, name, substr(trim(lead), 1, 600), body FROM doc WHERE is_log;
 INSERT INTO files SELECT path, mtime FROM doc;
 COMMIT;
+PRAGMA user_version = $INDEX_V;
 SQL
   rmdir "$c/lock" 2>/dev/null; return 0
 }
@@ -132,6 +136,34 @@ for w in sys.stdin.read().split():
   fi
   printf '%s\n' "$words" | awk -F'\t' -v l="$lang" -v f="$c/stems.tsv" 'FILENAME == f { if ($1 == l) st[$2] = $3; next } { print (($0 in st) ? st[$0] : $0) }' "$c/stems.tsv" -
 }
+# Glue words that never count as rare: the 300 most common words of English and of the profile's language, from the
+# wordfreq package through uv. Each list is built once per Mac into the cache, in the background the first time it is
+# missing; until then (or without uv) the words go unfiltered. A failed build is tried again after a day.
+common_words() {
+  local c l f; c=$(cache_dir)
+  for l in english $(stem_lang); do
+    f="$c/common-$l.txt"
+    if [ -f "$f" ]; then cat "$f"
+    elif [ -n "$(uv_bin)" ] && [ -z "$(find "$f.fail" -mtime -1 2>/dev/null)" ]; then ( build_common "$l" >/dev/null 2>&1 & )
+    fi
+  done | sort -u
+}
+build_common() { # $1 a language name as profile.md writes it (lowercase): english, swedish, german …
+  local c f uv; c=$(cache_dir); f="$c/common-$1.txt"; uv=$(uv_bin)
+  mkdir "$f.lock" 2>/dev/null || return 0
+  if "$uv" run -q --no-project --python 3.12 --with wordfreq python -I -c '
+import sys
+from wordfreq import top_n_list, available_languages
+names = {"arabic": "ar", "catalan": "ca", "czech": "cs", "danish": "da", "dutch": "nl", "english": "en", "finnish": "fi",
+  "french": "fr", "german": "de", "greek": "el", "hindi": "hi", "hungarian": "hu", "icelandic": "is", "indonesian": "id",
+  "italian": "it", "latvian": "lv", "lithuanian": "lt", "norwegian": "nb", "polish": "pl", "portuguese": "pt",
+  "romanian": "ro", "russian": "ru", "spanish": "es", "swedish": "sv", "tamil": "ta", "turkish": "tr", "ukrainian": "uk"}
+code = names.get(sys.argv[1])
+words = top_n_list(code, 300) if code in available_languages() else []
+print("\n".join(sorted({w.lower() for w in words if w.isalpha() and len(w) >= 3})))' "$1" > "$f.new" 2>/dev/null
+  then mv "$f.new" "$f"; rm -f "$f.fail"; else rm -f "$f.new"; touch "$f.fail"; fi
+  rmdir "$f.lock"
+}
 # Plain search for the agent: $1 table (pages or logs), the rest the words. Best 8, any match.
 search() {
   local t="$1" c qf; shift; c=$(cache_dir); index_sync; qf="$c/q.txt"
@@ -152,20 +184,22 @@ SQL
 # A page passes when the prompt names it, or when it holds at least 2 of the prompt's rare words (in under a fifth
 # of all pages). At most 3; usually none.
 relevant_pages() {
-  local c; c=$(cache_dir); touch "$2"
+  local c; c=$(cache_dir); touch "$2"; common_words > "$c/common.txt"
   words_of "$1" | patterns_of > "$c/pat.tsv"
   sqlite3 "$c/index.db" 2>/dev/null <<SQL
 CREATE TEMP TABLE pin(word TEXT, stem TEXT, pre INTEGER);
 CREATE TEMP TABLE shown(path TEXT);
+CREATE TEMP TABLE common(word TEXT PRIMARY KEY);
 .mode tabs
 .import "$c/pat.tsv" pin
+.import "$c/common.txt" common
 $PAT_SQL
 .import "$2" shown
 CREATE VIRTUAL TABLE temp.q USING fts5(x, $FTS_TOK);
 INSERT INTO temp.q SELECT CAST(readfile('$1') AS TEXT);
 CREATE TEMP TABLE n AS SELECT count(*) AS n FROM pages;
 CREATE TEMP TABLE df AS SELECT word, pat, (SELECT count(*) FROM pages WHERE pages MATCH pat.pat) AS df FROM pat;
-CREATE TEMP TABLE rare AS SELECT * FROM df WHERE df > 0 AND (df * 5 <= (SELECT n FROM n) OR (df = 1 AND (SELECT n FROM n) < 10));
+CREATE TEMP TABLE rare AS SELECT * FROM df WHERE word NOT IN (SELECT word FROM common) AND df > 0 AND (df * 5 <= (SELECT n FROM n) OR (df = 1 AND (SELECT n FROM n) < 10));
 CREATE TEMP TABLE named AS SELECT path FROM pages p
   WHERE length(p.name) >= 3 AND p.name NOT IN ('todo', 'tasks')
     AND EXISTS (SELECT 1 FROM temp.q WHERE q MATCH '"' || replace(p.name, '"', '') || '"');
@@ -182,7 +216,7 @@ SELECT DISTINCT p.word, p.stem, p.pre FROM pin p JOIN df ON df.word = p.word WHE
 .separator "\t"
 $( if [ -n "$3" ]; then cat <<EXPLAIN
 SELECT 'pages in index: ' || n FROM n;
-SELECT 'word', 'pattern', 'pages', 'rare' UNION ALL SELECT word, pat, df, CASE WHEN word IN (SELECT word FROM rare) THEN 'yes' ELSE 'no' END FROM df;
+SELECT 'word', 'pattern', 'pages', 'rare' UNION ALL SELECT word, pat, df, CASE WHEN word IN (SELECT word FROM rare) THEN 'yes' WHEN word IN (SELECT word FROM common) THEN 'no (common word)' ELSE 'no' END FROM df;
 SELECT 'named in prompt: ' || path FROM named;
 SELECT 'rare words held: ' || k || ' ' || path || CASE WHEN k >= 2 THEN '' ELSE '  (needs 2)' END FROM hits ORDER BY k DESC LIMIT 15;
 SELECT 'already shown: ' || path FROM shown;
@@ -429,6 +463,12 @@ move_folder() { # $1 old, $2 new: move what an earlier version kept in $1 into $
 update_migrate() { # bring a vault from an earlier version's layout to this one; each step checks first, so a second run does nothing
   local f n=0
   MIGRATE_MOVED=0
+  # 0.7.1: the fixes folder, and its line in MAP.md below the preferences line
+  [ -d 03-knowledge/fixes ] || { mkdir -p 03-knowledge/fixes && echo "ADDED folder 03-knowledge/fixes/"; }
+  if [ -f MAP.md ] && ! grep -qF '03-knowledge/fixes/' MAP.md; then
+    awk '{print} /^- 03-knowledge\/preferences\// && !d {print "- 03-knowledge/fixes/ — what works when a tool failed (each listed below it)"; d=1}
+      END {if (!d) print "- 03-knowledge/fixes/ — what works when a tool failed (each listed below it)"}' MAP.md > MAP.md.new && mv MAP.md.new MAP.md && echo "ADDED 03-knowledge/fixes/ to MAP.md"
+  fi
   # 0.5: 02-subjects -> 02-spaces, 03-references -> 03-knowledge, 04-archive/subjects -> 04-archive/spaces
   move_folder 04-archive/subjects 04-archive/spaces
   move_folder 02-subjects 02-spaces

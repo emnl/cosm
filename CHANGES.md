@@ -1,5 +1,11 @@
 # Changes
 
+## 0.7.1
+- Search ignores everyday words (in English and your language), so it attaches fewer pages that only share words like "first" or "list" with your message.
+- Logs saved under the older name format are found as logs.
+- The fixes folder is there from the start, and listed in your map.
+- Ask to see a table and the AI opens a copy for you.
+
 ## 0.7
 - The agent finds things in your notes by search, and understands word forms in your language ("fakturorna" finds "faktura") once the toolbox is installed.
 - When you write a message, the agent is handed the few pages that clearly bear on it, each once per chat, so it starts from your notes instead of guessing. Nothing is attached when nothing fits.
