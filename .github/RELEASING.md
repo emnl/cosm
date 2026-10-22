@@ -31,3 +31,17 @@ For whoever works on cosm itself. Kept in `.github/`, which Obsidian ignores, an
 ## Update test
 
 In a vault on the previous version, a new chat, the words "update cosm". Afterwards compare every file in `MANIFEST` with the release (`git show <commit>:<path> | cmp -s - <vault>/<path>`) and check the user's notes, theme, light/dark and plugin list are as they were.
+
+## Live check
+
+After a release that changes what the agent does, in the test vault (`~/Downloads/cosm-main-2`), each in a new chat unless said otherwise, after "update cosm" and a restart of Obsidian (⌘Q) so the cosm plugin reloads:
+
+1. **Update:** "update cosm" reports the new version and any migration lines; the user's notes, `MAP.md` entries and preferences stay where they were.
+2. **Pages attached:** a question about a page that exists (the Keeper payout date) gets that page in `<pages>` and is answered from it; ask the agent to list what came attached.
+3. **gran read:** "what tables do i have?" loads the gran skill (a skill row, not Bash), reads the gran preference and answers in one step.
+4. **gran write:** "add 9 Oct Uber 312 kr travel from the October statement" shows "gran · Writing to a table", ends `OK`, asks nothing.
+5. **gran yes-rule:** "delete the <named> row" just does it; "clean up the table" proposes and waits for ==y==.
+6. **Narrow table:** a table answer in a narrow chat scrolls sideways, columns intact.
+7. **Failure:** `ls "01-inbox/no such folder"` comes back with the fix reminder (or a matching fix line), once per chat.
+
+Read the sessions afterwards as in New-user test step 3. Anything that doesn't match is a fix before the next release.
