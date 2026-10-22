@@ -24,6 +24,8 @@ A table and its page point at each other: the table's `Scope:` names the page th
 | `bash .claude/scripts/cosm.sh gran-exec "<SQL>"` | any SQL, several statements, all or nothing (no `BEGIN`/`COMMIT`: it adds them); then the copies in `.cosm/gran/` and a check |
 | `bash .claude/scripts/cosm.sh gran-import <table> <file.csv>` | adds the rows of a CSV file (header row = column names) to a table, all or nothing, empty cells as NULL; a `tmp_` table that doesn't exist is made from the header (all columns text) |
 
+Only through these commands; never `sqlite3` on the database directly: it skips the copies and the checks.
+
 The SQL goes in double quotes: text values in single quotes, an apostrophe inside one doubled (`'Anna''s'`); no `$`, backtick or double quote inside.
 
 ## Reading

@@ -1,5 +1,8 @@
 # Changes
 
+## 0.7.3
+- The AI works with your tables only through cosm's own commands, so every change keeps its copy and its checks.
+
 ## 0.7.2
 - The chat says in plain words what the AI is doing ("gran · Reading a table", "Searching your notes", "Moving a file") instead of "Bash".
 - The AI loads cosm's skills properly, so your preferences, tables and known fixes are in front of it at once.

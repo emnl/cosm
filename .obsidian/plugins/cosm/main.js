@@ -24,7 +24,7 @@ const SHELL = [
   [/^mv\b/, "Moving a file"], [/^mkdir\b/, "Making a folder"], [/^(cp|rsync)\b/, "Copying a file"],
   [/^(grep|rg)\b/, "Searching in files"], [/^(uv run|uvx|~\/\.local\/bin\/uv)\b/, "Running a tool (Word, Excel, PDF …)"],
   [/^curl\b/, "Fetching from the web"], [/^textutil\b/, "Converting a document"], [/^unzip\b/, "Unpacking a file"],
-  [/^date\b/, "Checking the date"], [/^open\b/, "Opening a file"],
+  [/^sqlite3\b/, "gran · Looking at your tables"], [/^date\b/, "Checking the date"], [/^open\b/, "Opening a file"],
 ];
 function shellLabel(cmd) {
   const parts = cmd.replace(/\.\.\.$/, "").split(/\s*(?:&&|\|\||;|\|)\s*/).map((x) => x.trim()).filter(Boolean);
